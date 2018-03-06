@@ -20,6 +20,22 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    featureFlags: {
+      'show-bear': true,
+      'show-bacon': false
+    },
+    featureControls: {
+      metadata: [
+        {
+          key: 'show-bear',
+          description: 'Show a bear'
+        },
+        {
+          key: 'show-bacon',
+          description: 'Show some bacon'
+        }
+      ]
     }
   };
 

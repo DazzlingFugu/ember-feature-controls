@@ -1,0 +1,16 @@
+<h1>Welcome to Ember Feature Controls</h1>
+
+<div class="container">
+  <div class="row">
+    {{#if (feature-flag 'show-bear')}}
+      <div class="column">
+        <img src="{{rootURL}}/assets/bear.jpg" alt="bear">
+      </div>
+    {{/if}}
+    {{#if (feature-flag 'show-bacon')}}
+      <div class="column">
+        <img src="{{rootURL}}/assets/bacon.jpg" alt="bacon">
+      </div>
+    {{/if}}
+  </div>
+</div>

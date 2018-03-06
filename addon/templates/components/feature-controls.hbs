@@ -1,0 +1,26 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |flag|}}
+      <tr>
+        <td>{{flag.key}}</td>
+        <td>{{flag.description}}</td>
+        <td>{{input type='checkbox' checked=flag.isEnabled change=(action 'doToggleFeature' flag.key flag.isEnabled)}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{#if showRefresh}}
+  <button {{action 'refresh'}}>Refresh</button>
+{{/if}}
+
+{{#if showReset}}
+  <button {{action 'reset'}}>Reset</button>
+{{/if}}
