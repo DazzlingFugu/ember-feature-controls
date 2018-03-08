@@ -1,5 +1,7 @@
 # ember-feature-controls
 
+[![Build Status](https://travis-ci.org/peopledoc/ember-feature-controls.svg?branch=master)](https://travis-ci.org/peopledoc/ember-feature-controls)
+
 Hot plug your features.
 
 ## Installation
