@@ -9,7 +9,7 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('index', { path: '/' });
-  featureControlsRouteSetup(this, { path: '__featues' });
+  featureControlsRouteSetup(this, { path: '__features' });
 });
 
 export default Router;

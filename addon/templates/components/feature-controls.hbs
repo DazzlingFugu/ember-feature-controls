@@ -11,16 +11,16 @@
       <tr>
         <td>{{flag.key}}</td>
         <td>{{flag.description}}</td>
-        <td>{{input type='checkbox' checked=flag.isEnabled change=(action 'doToggleFeature' flag.key flag.isEnabled)}}</td>
+        <td>{{input type='checkbox' checked=flag.isEnabled change=(action 'doToggleFeature' flag.key flag.isEnabled) data-test-checkbox-flag=flag.key}}</td>
       </tr>
     {{/each}}
   </tbody>
 </table>
 
 {{#if showRefresh}}
-  <button {{action 'refresh'}}>Refresh</button>
+  <button {{action 'refresh'}} data-test-button-refresh>Refresh</button>
 {{/if}}
 
 {{#if showReset}}
-  <button {{action 'reset'}}>Reset</button>
+  <button {{action 'reset'}} data-test-button-reset>Reset</button>
 {{/if}}
