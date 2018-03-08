@@ -26,6 +26,7 @@
     "ember-cli-htmlbars": "^2.0.1",
     "ember-feature-flags": "^5.0.0",
     "ember-get-config": "^0.2.4",
+    "ember-local-storage": "^1.4.1",
     "ember-truth-helpers": "^2.0.0"
   },
   "devDependencies": {

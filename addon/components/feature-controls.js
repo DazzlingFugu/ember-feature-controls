@@ -4,12 +4,14 @@ import layout from '../templates/components/feature-controls';
 import { set, get } from '@ember/object';
 import { assign } from '@ember/polyfills';
 import config from 'ember-get-config';
+import { storageFor } from 'ember-local-storage';
 
 const { featureFlags, featureControls } = config;
 
 export default Component.extend({
   layout,
   features: service(),
+  savedConf: storageFor('feature-controls'),
   showRefresh: true,
   showReset: true,
   featureFlags,
@@ -36,7 +38,7 @@ export default Component.extend({
         }) || {};
       let featureFlag = {
         key,
-        isEnabled: get(this, 'features').isEnabled(key),
+        isEnabled: this.get(`savedConf.${key}`) !== undefined ? this.get(`savedConf.${key}`) : get(this, 'features').isEnabled(key),
         default: defaults[key] || false
       };
       return assign({}, meta, featureFlag);
@@ -48,6 +50,7 @@ export default Component.extend({
     Object.keys(featureFlags).forEach(key => {
       this.updateFeature(this._normalizeFlag(key), featureFlags[key]);
     });
+    this.get('savedConf').reset();
   },
   updateFeature(key, isEnabled) {
     if (isEnabled) {
@@ -75,6 +78,7 @@ export default Component.extend({
     },
     doToggleFeature(key, checkboxState) {
       this.updateFeature(key, !checkboxState);
+      this.set(`savedConf.${key}`, !checkboxState);
     }
   }
 });
