@@ -12,6 +12,7 @@ export default Component.extend({
   features: service(),
   showRefresh: true,
   showReset: true,
+  featureFlags,
   init() {
     this._super(...arguments);
     this.refresh();
@@ -20,21 +21,30 @@ export default Component.extend({
     return get(this, 'features._normalizeFlag')(key);
   },
   refresh() {
+    let featureFlags = this.get('featureFlags');
+    // Compute default values
+    let defaults = {};
+    for (let key in featureFlags) {
+      defaults[this._normalizeFlag(key)] = featureFlags[key];
+    }
+    
     // Computed property is not possible, model is a local copy of feature flags
     let model = (get(this, 'features.flags') || []).map(key => {
       let meta =
-        (featureControls && featureControls.metadata || []).find(obj => {
+        ((featureControls && featureControls.metadata) || []).find(obj => {
           return this._normalizeFlag(obj.key) === key;
         }) || {};
       let featureFlag = {
         key,
-        isEnabled: get(this, 'features').isEnabled(key)
+        isEnabled: get(this, 'features').isEnabled(key),
+        default: defaults[key] || false
       };
       return assign({}, meta, featureFlag);
     });
     set(this, 'model', model);
   },
   reset() {
+    let featureFlags = this.get('featureFlags');
     Object.keys(featureFlags).forEach(key => {
       this.updateFeature(this._normalizeFlag(key), featureFlags[key]);
     });

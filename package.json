@@ -22,7 +22,8 @@
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-feature-flags": "^5.0.0",
-    "ember-get-config": "^0.2.4"
+    "ember-get-config": "^0.2.4",
+    "ember-truth-helpers": "^2.0.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
