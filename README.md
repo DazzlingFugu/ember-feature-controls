@@ -4,6 +4,8 @@
 
 Hot plug your features.
 
+Demo is available here: [https://peopledoc.github.io/ember-feature-controls/](https://peopledoc.github.io/ember-feature-controls/).
+
 ## Installation
 
 ```
