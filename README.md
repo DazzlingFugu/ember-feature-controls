@@ -14,17 +14,15 @@ ember install ember-feature-controls
 
 ## Usage
 
-This addon will display a standard HTML table with the possibility to enable/disable a feature flag.
+This addon works with [ember-feature-flags](https://github.com/kategengler/ember-feature-flags).
+This addon displays an administration panel to enable or disable feature flags.
 
 ![Screenshot](/docs/screenshot.png)
 
-This addon works with [ember-feature-flags](https://github.com/kategengler/ember-feature-flags).
-
 ### Within a template
 
-This will only display the table with actions buttons.
-
-You need to call the component `feature-controls` in a template:
+The addon provides a component `{{feature-controls}}` to add in a template of your app.
+This component basically displays the table with actions buttons.
 
 ```hbs
 {{feature-controls}}
