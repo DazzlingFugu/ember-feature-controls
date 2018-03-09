@@ -47,9 +47,7 @@ module('Integration | Component | feature-controls', function(hooks) {
       features: featuresMock(assert),
       featureFlags
     });
-    await render(
-      hbs`{{feature-controls}}`
-    );
+    await render(hbs`{{feature-controls}}`);
     assert.ok(this.element.querySelector('[data-test-button-refresh]'));
     assert.ok(this.element.querySelector('[data-test-button-reset]'));
   });
@@ -59,9 +57,7 @@ module('Integration | Component | feature-controls', function(hooks) {
       features: featuresMock(assert),
       featureFlags
     });
-    await render(
-      hbs`{{feature-controls showRefresh=false showReset=false}}`
-    );
+    await render(hbs`{{feature-controls showRefresh=false showReset=false}}`);
     assert.notOk(this.element.querySelector('[data-test-button-refresh]'));
     assert.notOk(this.element.querySelector('[data-test-button-reset]'));
   });
@@ -155,15 +151,50 @@ module('Integration | Component | feature-controls', function(hooks) {
     await render(
       hbs`{{feature-controls features=features featureFlags=featureFlags}}`
     );
-
-    await click('[data-test-button-refresh]');
-    assert.equal(this.element.querySelectorAll('tbody tr').length, 2);
     assert.ok(
       this.element.querySelector('[data-test-checkbox-flag="flagTrue"]').checked
+    );
+    assert.equal(
+      this.element
+        .querySelector('[data-test-label-flag="flagTrue"]')
+        .textContent.trim(),
+      ''
     );
     assert.notOk(
       this.element.querySelector('[data-test-checkbox-flag="flagFalse"]')
         .checked
+    );
+    assert.equal(
+      this.element
+        .querySelector('[data-test-label-flag="flagFalse"]')
+        .textContent.trim(),
+      ''
+    );
+
+    this.set('featureFlags', {
+      'flag-true': false,
+      'flag-false': true
+    });
+
+    await click('[data-test-button-refresh]');
+    assert.ok(
+      this.element.querySelector('[data-test-checkbox-flag="flagTrue"]').checked
+    );
+    assert.equal(
+      this.element
+        .querySelector('[data-test-label-flag="flagTrue"]')
+        .textContent.trim(),
+      '❗'
+    );
+    assert.notOk(
+      this.element.querySelector('[data-test-checkbox-flag="flagFalse"]')
+        .checked
+    );
+    assert.equal(
+      this.element
+        .querySelector('[data-test-label-flag="flagFalse"]')
+        .textContent.trim(),
+      '❗'
     );
   });
 });
