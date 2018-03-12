@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "description": "Hot plug your features.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "feature-flag",
+    "feature-toggle",
+    "features-switch"
   ],
   "license": "MIT",
   "author": "Guillaume Gérard <guillaume.gerard88@gmail.com>",
