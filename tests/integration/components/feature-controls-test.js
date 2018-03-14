@@ -3,8 +3,9 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { camelize } from '@ember/string';
+import { _resetStorages } from 'ember-local-storage/helpers/storage';
 
-const featuresMock = function(assert) {
+const featuresMock = function(assert) { // eslint-disable-line no-unused-vars
   return {
     flags: [camelize('flag-true'), camelize('flag-false')],
     isEnabled(key) {
@@ -27,16 +28,30 @@ const featureFlags = {
   'flag-false': false
 };
 
+const storageMock = function(assert) {
+  return {
+    reset() {
+      assert.ok(true)
+    }
+  }
+}
+
 module('Integration | Component | feature-controls', function(hooks) {
   setupRenderingTest(hooks);
+
+  hooks.beforeEach(function() {
+    window.localStorage.clear();
+    _resetStorages();
+  });
 
   test('it renders multiple flags', async function(assert) {
     this.setProperties({
       features: featuresMock(assert),
-      featureFlags
+      featureFlags,
+      savedConf: storageMock(assert)
     });
     await render(
-      hbs`{{feature-controls features=features featureFlags=featureFlags}}`
+      hbs`{{feature-controls features=features featureFlags=featureFlags savedConf=savedConf}}`
     );
     assert.ok(this.element.querySelector('table'));
     assert.equal(this.element.querySelectorAll('tbody tr').length, 2);
@@ -55,9 +70,10 @@ module('Integration | Component | feature-controls', function(hooks) {
   test('it does not render reset and refresh button when specified', async function(assert) {
     this.setProperties({
       features: featuresMock(assert),
-      featureFlags
+      featureFlags,
+      savedConf: storageMock(assert)
     });
-    await render(hbs`{{feature-controls showRefresh=false showReset=false}}`);
+    await render(hbs`{{feature-controls showRefresh=false showReset=false savedConf=savedConf}}`);
     assert.notOk(this.element.querySelector('[data-test-button-refresh]'));
     assert.notOk(this.element.querySelector('[data-test-button-reset]'));
   });
@@ -68,10 +84,11 @@ module('Integration | Component | feature-controls', function(hooks) {
 
     this.setProperties({
       features: featuresMock(assert),
-      featureFlags
+      featureFlags,
+      savedConf: storageMock(assert)
     });
     await render(
-      hbs`{{feature-controls features=features featureFlags=featureFlags}}`
+      hbs`{{feature-controls features=features featureFlags=featureFlags savedConf=savedConf}}`
     );
     assert.ok(
       this.element.querySelector('[data-test-checkbox-flag="flagTrue"]').checked
@@ -116,12 +133,16 @@ module('Integration | Component | feature-controls', function(hooks) {
   });
 
   test('pressing the reset button rolls back to default state', async function(assert) {
+    assert.expect(9);
+
     this.setProperties({
       features: featuresMock(assert),
-      featureFlags
+      featureFlags,
+      savedConf: storageMock(assert)
     });
+
     await render(
-      hbs`{{feature-controls features=features featureFlags=featureFlags}}`
+      hbs`{{feature-controls features=features featureFlags=featureFlags savedConf=savedConf}}`
     );
     await click('[data-test-checkbox-flag="flagTrue"]');
     assert.notOk(
@@ -134,6 +155,7 @@ module('Integration | Component | feature-controls', function(hooks) {
     );
 
     await click('[data-test-button-reset]');
+
     assert.ok(
       this.element.querySelector('[data-test-checkbox-flag="flagTrue"]').checked
     );
@@ -146,10 +168,11 @@ module('Integration | Component | feature-controls', function(hooks) {
   test('pressing refresh updates the model', async function(assert) {
     this.setProperties({
       features: featuresMock(assert),
-      featureFlags
+      featureFlags,
+      savedConf: storageMock(assert)
     });
     await render(
-      hbs`{{feature-controls features=features featureFlags=featureFlags}}`
+      hbs`{{feature-controls features=features featureFlags=featureFlags savedConf=savedConf}}`
     );
     assert.ok(
       this.element.querySelector('[data-test-checkbox-flag="flagTrue"]').checked
@@ -197,4 +220,30 @@ module('Integration | Component | feature-controls', function(hooks) {
       '❗'
     );
   });
+
+  test('changing a feature flag and clicking the refresh button persists the changes', async function(assert) {
+    this.setProperties({
+      features: featuresMock(assert),
+      featureFlags,
+      savedConf: storageMock(assert)
+    });
+
+    await render(
+      hbs`{{feature-controls features=features featureFlags=featureFlags savedConf=savedConf}}`
+    );
+
+    await click('[data-test-checkbox-flag="flagFalse"]');
+
+    assert.ok(
+      this.element.querySelector('[data-test-checkbox-flag="flagFalse"]')
+          .checked
+    );
+
+    await click('[data-test-button-refresh]');
+
+    assert.ok(
+      this.element.querySelector('[data-test-checkbox-flag="flagFalse"]')
+          .checked
+    );
+  })
 });
