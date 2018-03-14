@@ -29,7 +29,7 @@ export default Component.extend({
     for (let key in featureFlags) {
       defaults[this._normalizeFlag(key)] = featureFlags[key];
     }
-    
+
     // Computed property is not possible, model is a local copy of feature flags
     let model = (get(this, 'features.flags') || []).map(key => {
       let meta =
@@ -78,7 +78,9 @@ export default Component.extend({
     },
     doToggleFeature(key, checkboxState) {
       this.updateFeature(key, !checkboxState);
-      this.set(`savedConf.${key}`, !checkboxState);
+      if(featureControls.saveInLocalStorage) {
+        this.set(`savedConf.${key}`, !checkboxState);
+      }
     }
   }
 });

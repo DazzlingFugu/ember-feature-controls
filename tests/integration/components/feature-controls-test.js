@@ -5,7 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 import { camelize } from '@ember/string';
 import { _resetStorages } from 'ember-local-storage/helpers/storage';
 
-const featuresMock = function(assert) { // eslint-disable-line no-unused-vars
+const featuresMock = function(assert, save) { // eslint-disable-line no-unused-vars
   return {
     flags: [camelize('flag-true'), camelize('flag-false')],
     isEnabled(key) {
@@ -19,7 +19,8 @@ const featuresMock = function(assert) { // eslint-disable-line no-unused-vars
     },
     enable() {
       assert.ok(true);
-    }
+    },
+    saveInLocalStorage: save === false ? false : true
   };
 };
 
@@ -242,6 +243,32 @@ module('Integration | Component | feature-controls', function(hooks) {
     await click('[data-test-button-refresh]');
 
     assert.ok(
+      this.element.querySelector('[data-test-checkbox-flag="flagFalse"]')
+          .checked
+    );
+  })
+
+  test('does not save to local storage when specified in config', async function(assert) {
+    this.setProperties({
+      features: featuresMock(assert, false),
+      featureFlags,
+      savedConf: storageMock(assert)
+    });
+
+    await render(
+      hbs`{{feature-controls features=features featureFlags=featureFlags savedConf=savedConf}}`
+    );
+
+    await click('[data-test-checkbox-flag="flagFalse"]');
+
+    assert.ok(
+      this.element.querySelector('[data-test-checkbox-flag="flagFalse"]')
+          .checked
+    );
+
+    await click('[data-test-button-refresh]');
+
+    assert.notOk(
       this.element.querySelector('[data-test-checkbox-flag="flagFalse"]')
           .checked
     );
