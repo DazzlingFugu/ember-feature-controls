@@ -246,30 +246,4 @@ module('Integration | Component | feature-controls', function(hooks) {
           .checked
     );
   })
-
-  test('does not save to local storage when specified in config', async function(assert) {
-    this.setProperties({
-      features: featuresMock(assert),
-      featureFlags,
-      savedConf: storageMock(assert)
-    });
-
-    await render(
-      hbs`{{feature-controls features=features featureFlags=featureFlags savedConf=savedConf}}`
-    );
-
-    await click('[data-test-checkbox-flag="flagFalse"]');
-
-    assert.ok(
-      this.element.querySelector('[data-test-checkbox-flag="flagFalse"]')
-          .checked
-    );
-
-    await click('[data-test-button-refresh]');
-
-    assert.notOk(
-      this.element.querySelector('[data-test-checkbox-flag="flagFalse"]')
-          .checked
-    );
-  })
 });
