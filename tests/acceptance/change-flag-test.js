@@ -6,7 +6,7 @@ import { _resetStorages } from 'ember-local-storage/helpers/storage';
 module('Acceptance | change flag', function(hooks) {
   setupApplicationTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.afterEach(function() {
     window.localStorage.clear();
     _resetStorages();
   });
