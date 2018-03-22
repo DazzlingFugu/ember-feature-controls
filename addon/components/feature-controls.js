@@ -50,7 +50,10 @@ export default Component.extend({
     Object.keys(featureFlags).forEach(key => {
       this.updateFeature(this._normalizeFlag(key), featureFlags[key]);
     });
-    this.get('savedConf').reset();
+    // If we use local storage then we want to clear the stored data
+    if(this.get('featureControls.useLocalStorage')) {
+      this.get('featuresLS').reset();
+    }
   },
   updateFeature(key, isEnabled) {
     if (isEnabled) {
