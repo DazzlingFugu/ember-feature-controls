@@ -5,7 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 import { camelize } from '@ember/string';
 import { _resetStorages } from 'ember-local-storage/helpers/storage';
 
-const featuresMock = function(assert) { // eslint-disable-line no-unused-vars
+const featuresMock = function(assert) {
   return {
     flags: [camelize('flag-true'), camelize('flag-false')],
     isEnabled(key) {
@@ -39,7 +39,7 @@ const storageMock = function(assert) {
 module('Integration | Component | feature-controls', function(hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.afterEach(function() {
     window.localStorage.clear();
     _resetStorages();
   });
@@ -222,6 +222,8 @@ module('Integration | Component | feature-controls', function(hooks) {
   });
 
   test('changing a feature flag and clicking the refresh button persists the changes', async function(assert) {
+    assert.expect(3);
+
     this.setProperties({
       features: featuresMock(assert),
       featureFlags,

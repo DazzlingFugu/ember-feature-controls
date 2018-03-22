@@ -1,20 +1,42 @@
-import Application from 'dummy/app';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { setApplication } from '@ember/test-helpers';
+import { find, visit, click } from '@ember/test-helpers';
 import config from 'dummy/config/environment';
+import { _resetStorages } from 'ember-local-storage/helpers/storage';
+
+let oldConfig = config.featureControls;
 
 module('Acceptance | local storage env', function(hooks) {
 
-  // set again a new application as in `tests/test-helper.js`
-  // because it seems to be the ony way to set the config environment
-  config.featureControls.saveInLocalStorage = false;
-  setApplication(Application.create(config.APP));
   setupApplicationTest(hooks);
 
-  test('does not save to local storage when specified in config', async function(assert) {
-    assert.notOk(window.localStorage.length, 'local storage is empty')
-    // reset config to its default value, otherwise other tests fail
+  hooks.afterEach(function() {
+    config.featureControls = oldConfig;
+    window.localStorage.clear();
+    _resetStorages();
+  });
+
+  test('does save to local storage when specified in config', async function(assert) {
     config.featureControls.saveInLocalStorage = true;
+    await visit('/__features');
+    await click(find('[data-test-checkbox-flag=showBacon]'));
+
+    assert.equal(
+      window.localStorage.getItem('storage:feature-controls'),
+      "{\"showBacon\":true}",
+      'local storage has an item'
+    );
+  });
+
+  test('does not save to local storage when specified in config', async function(assert) {
+    config.featureControls.saveInLocalStorage = false;
+    await visit('/__features');
+    await click(find('[data-test-checkbox-flag=showBacon]'));
+
+    assert.equal(
+      window.localStorage.getItem('storage:feature-controls'),
+      '{}',
+      'local storage is empty'
+    );
   })
 });
