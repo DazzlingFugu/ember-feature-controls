@@ -26,7 +26,7 @@ module.exports = function(environment) {
       'show-bacon': false
     },
     featureControls: {
-      saveInLocalStorage: true,
+      useLocalStorage: true,
       metadata: [
         {
           key: 'show-bear',

@@ -11,9 +11,10 @@ const { featureFlags, featureControls } = config;
 export default Component.extend({
   layout,
   features: service(),
-  savedConf: storageFor('feature-controls'),
+  featuresLS: storageFor('feature-controls'),
   showRefresh: true,
   showReset: true,
+  featureControls,
   featureFlags,
   init() {
     this._super(...arguments);
@@ -22,23 +23,24 @@ export default Component.extend({
   _normalizeFlag(key) {
     return get(this, 'features._normalizeFlag')(key);
   },
+  // Refresh the state of the feature flags list component
   refresh() {
+    // Take the existing flags from the config and put them in a list of default values
     let featureFlags = this.get('featureFlags');
-    // Compute default values
     let defaults = {};
     for (let key in featureFlags) {
       defaults[this._normalizeFlag(key)] = featureFlags[key];
     }
-
-    // Computed property is not possible, model is a local copy of feature flags
+    // Model is a local copy of the list of flags register for features service, used to compute properties on the full list
     let model = (get(this, 'features.flags') || []).map(key => {
       let meta =
-        ((featureControls && featureControls.metadata) || []).find(obj => {
+        ((featureControls && this.get('featureControls').metadata) || []).find(obj => {
           return this._normalizeFlag(obj.key) === key;
         }) || {};
+      let isFlagLS = this.get('featureControls').useLocalStorage && (this.get(`featuresLS.${key}`) !== undefined);
       let featureFlag = {
         key,
-        isEnabled: this.get(`savedConf.${key}`) !== undefined ? this.get(`savedConf.${key}`) : get(this, 'features').isEnabled(key),
+        isEnabled: isFlagLS ? this.get(`featuresLS.${key}`) : get(this, 'features').isEnabled(key),
         default: defaults[key] || false
       };
       return assign({}, meta, featureFlag);
@@ -46,6 +48,7 @@ export default Component.extend({
     set(this, 'model', model);
   },
   reset() {
+    // Reset the flags from the features service to the default value in the config
     let featureFlags = this.get('featureFlags');
     Object.keys(featureFlags).forEach(key => {
       this.updateFeature(this._normalizeFlag(key), featureFlags[key]);
@@ -81,8 +84,8 @@ export default Component.extend({
     },
     doToggleFeature(key, checkboxState) {
       this.updateFeature(key, !checkboxState);
-      if(featureControls.saveInLocalStorage) {
-        this.set(`savedConf.${key}`, !checkboxState);
+      if(this.get('featureControls.useLocalStorage')) {
+        this.set(`featuresLS.${key}`, !checkboxState);
       }
     }
   }

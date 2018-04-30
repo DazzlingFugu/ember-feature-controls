@@ -17,7 +17,7 @@ module('Acceptance | local storage env', function(hooks) {
   });
 
   test('does save to local storage when specified in config', async function(assert) {
-    config.featureControls.saveInLocalStorage = true;
+    config.featureControls.useLocalStorage = true;
     await visit('/__features');
     await click(find('[data-test-checkbox-flag=showBacon]'));
 
@@ -29,13 +29,13 @@ module('Acceptance | local storage env', function(hooks) {
   });
 
   test('does not save to local storage when specified in config', async function(assert) {
-    config.featureControls.saveInLocalStorage = false;
+    config.featureControls.useLocalStorage = false;
     await visit('/__features');
     await click(find('[data-test-checkbox-flag=showBacon]'));
 
     assert.equal(
       window.localStorage.getItem('storage:feature-controls'),
-      '{}',
+      null,
       'local storage is empty'
     );
   })
