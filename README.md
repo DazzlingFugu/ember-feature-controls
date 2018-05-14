@@ -60,10 +60,11 @@ export default Router;
 ```
 
 ## Configuration
-
 `config.featureFlags`
 
-You can configure a set of metadata for your feature flags in your app's `config/environment.js` file. This is an easy way to change settings for a given environment. For example:
+Define a set of custom feature flags by defining the `featureFlags` property in `config/environment.js`.
+
+Then, you can configure a set of metadata for your feature flags by defining the property `featureControls`. This is an easy way to change settings for a given environment. For example:
 
 ```js
 // config/environment.js
@@ -74,6 +75,7 @@ module.exports = function(environment) {
       'download-cats': false
     },
     featureControls: {
+      useLocalStorage: true,
       metadata: [
         {
           key: 'show-spinners',
@@ -90,6 +92,7 @@ module.exports = function(environment) {
   return ENV;
 };
 ```
+About `useLocalStorage`: this property is not mandatory, but setting it to true register the new value of some flag in the local storage. This way, the values for all flags remain the same after refreshing your application. 
 
 ## Contributing
 
