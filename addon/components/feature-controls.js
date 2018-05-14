@@ -34,10 +34,10 @@ export default Component.extend({
     // Model is a local copy of the list of flags register for features service, used to compute properties on the full list
     let model = (get(this, 'features.flags') || []).map(key => {
       let meta =
-        ((featureControls && this.get('featureControls').metadata) || []).find(obj => {
+        ((featureControls && this.get('featureControls.metadata')) || []).find(obj => {
           return this._normalizeFlag(obj.key) === key;
         }) || {};
-      let isFlagLS = this.get('featureControls').useLocalStorage && (this.get(`featuresLS.${key}`) !== undefined);
+      let isFlagLS = this.get('featureControls.useLocalStorage') && (this.get(`featuresLS.${key}`) !== undefined);
       let featureFlag = {
         key,
         isEnabled: isFlagLS ? this.get(`featuresLS.${key}`) : get(this, 'features').isEnabled(key),
