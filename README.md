@@ -2,9 +2,11 @@
 
 [![Build Status](https://travis-ci.org/peopledoc/ember-feature-controls.svg?branch=master)](https://travis-ci.org/peopledoc/ember-feature-controls) [![Ember Observer Score](https://emberobserver.com/badges/ember-feature-controls.svg)](https://emberobserver.com/addons/ember-feature-controls)
 
-Hot plug your features.
+Hot plug your features: `ember-feature-controls` provides an administration panel to enable or disable feature flags.
 
-Demo is available here: [https://peopledoc.github.io/ember-feature-controls/](https://peopledoc.github.io/ember-feature-controls/).
+- Demo is available here: [https://peopledoc.github.io/ember-feature-controls/](https://peopledoc.github.io/ember-feature-controls/).
+
+- To learn more about feature flags and how you can use them in your Ember app, read [this article](https://tech.people-doc.com/feature-flags-spa.html) by Xavier Cambar. 
 
 ## Installation
 
@@ -15,7 +17,7 @@ ember install ember-feature-controls
 ## Usage
 
 This addon works with [ember-feature-flags](https://github.com/kategengler/ember-feature-flags).
-This addon displays an administration panel to enable or disable feature flags.
+It displays an administration panel to enable or disable feature flags.
 
 ![Screenshot](/docs/screenshot.png)
 
@@ -92,7 +94,7 @@ module.exports = function(environment) {
   return ENV;
 };
 ```
-About `useLocalStorage`: this property is not mandatory, but setting it to true register the new value of some flag in the local storage. This way, the values for all flags remain the same after refreshing your application. 
+About `useLocalStorage`: this property is not mandatory, but setting it to true register the new value of some flag in the local storage. This way, the values for all flags remain the same after refreshing your application.
 
 ## Contributing
 
