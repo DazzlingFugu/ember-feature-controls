@@ -4,7 +4,11 @@ import { setupApplicationTest } from 'ember-qunit';
 import { _resetStorages } from 'ember-local-storage/helpers/storage';
 import { initialize } from 'ember-feature-controls/instance-initializers/load-feature-controls';
 import config from 'dummy/config/environment';
-let baseConfig = config.featureControls;
+import windowUtil from 'ember-feature-controls/utils/window';
+
+const baseConfig = config.featureControls;
+
+const originalWindowReload = windowUtil.reload;
 
 // Simulates the instructions done at page reload
 const reloadPage = function(appInstance) {
@@ -18,7 +22,12 @@ const reloadPage = function(appInstance) {
 module('Acceptance | change flag', function(hooks) {
   setupApplicationTest(hooks);
 
+  hooks.beforeEach(function() {
+    windowUtil.reload = function() {};
+  });
+
   hooks.afterEach(function() {
+    windowUtil.reload = originalWindowReload;
     config.featureControls = baseConfig;
     window.localStorage.clear();
     _resetStorages();
@@ -77,6 +86,24 @@ module('Acceptance | change flag', function(hooks) {
     await click(find('[data-test-button-reset]'));
     assert.equal(find('[data-test-label-flag=showBear]').innerText.trim(), '');
     assert.equal(find('[data-test-label-flag=showBacon]').innerText.trim(), '');
+  });
+
+  test("it doesn't reload page when clicking on a not reloadable feature flag", async function(assert) {
+    assert.expect(0);
+    windowUtil.reload = function() {
+      assert.ok(true, 'Reload function is called');
+    };
+    await visit('/__features');
+    await click(find('[data-test-checkbox-flag=showBear]'));
+  });
+
+  test('it reloads page when clicking on a reloadable feature flag', async function(assert) {
+    assert.expect(1);
+    windowUtil.reload = function() {
+      assert.ok(true, 'Reload function is called');
+    };
+    await visit('/__features');
+    await click(find('[data-test-checkbox-flag=showBacon]'));
   });
 
   test('with localStorage | it persists the changes when loading another URL', async function(assert) {

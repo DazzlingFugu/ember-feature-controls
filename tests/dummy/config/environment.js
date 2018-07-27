@@ -34,7 +34,8 @@ module.exports = function(environment) {
         },
         {
           key: 'show-bacon',
-          description: 'Show some bacon'
+          description: 'Show some bacon (reload option)',
+          reload: true
         }
       ]
     }

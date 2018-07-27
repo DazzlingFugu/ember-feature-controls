@@ -3,14 +3,21 @@ import { setupApplicationTest } from 'ember-qunit';
 import { find, visit, click } from '@ember/test-helpers';
 import config from 'dummy/config/environment';
 import { _resetStorages } from 'ember-local-storage/helpers/storage';
+import windowUtil from 'ember-feature-controls/utils/window';
 
-let baseConfig = config.featureControls;
+const baseConfig = config.featureControls;
+
+const originalWindowReload = windowUtil.reload;
 
 module('Acceptance | local storage env', function(hooks) {
-
   setupApplicationTest(hooks);
 
+  hooks.beforeEach(function() {
+    windowUtil.reload = function() {};
+  });
+
   hooks.afterEach(function() {
+    windowUtil.reload = originalWindowReload;
     config.featureControls = baseConfig;
     window.localStorage.clear();
     _resetStorages();
@@ -22,7 +29,7 @@ module('Acceptance | local storage env', function(hooks) {
     await click(find('[data-test-checkbox-flag=showBacon]'));
     assert.equal(
       window.localStorage.getItem('storage:feature-controls'),
-      "{\"showBacon\":true}",
+      '{"showBacon":true}',
       'local storage has an item'
     );
   });
@@ -37,5 +44,4 @@ module('Acceptance | local storage env', function(hooks) {
       'local storage is empty'
     );
   });
-
 });
