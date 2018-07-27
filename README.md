@@ -6,7 +6,7 @@ Hot plug your features: `ember-feature-controls` provides an administration pane
 
 - Demo is available here: [https://peopledoc.github.io/ember-feature-controls/](https://peopledoc.github.io/ember-feature-controls/).
 
-- To learn more about feature flags and how you can use them in your Ember app, read [this article](https://tech.people-doc.com/feature-flags-spa.html) by Xavier Cambar. 
+- To learn more about feature flags and how you can use them in your Ember app, read [this article](https://tech.people-doc.com/feature-flags-spa.html) by Xavier Cambar.
 
 ## Installation
 
@@ -36,8 +36,8 @@ This component basically displays the table with actions buttons.
 {{feature-controls showRefresh=false showReset=false}}
 ```
 
-* `showRefresh`: Show the refresh button, true by default
-* `showReset`: Show the refresh button, true by default
+- `showRefresh`: Show the refresh button, true by default
+- `showReset`: Show the refresh button, true by default
 
 ### Within the router
 
@@ -62,6 +62,7 @@ export default Router;
 ```
 
 ## Configuration
+
 `config.featureFlags`
 
 Define a set of custom feature flags by defining the `featureFlags` property in `config/environment.js`.
@@ -85,7 +86,8 @@ module.exports = function(environment) {
         },
         {
           key: 'download-cats',
-          description: 'Add button to download cats image'
+          description: 'Add button to download cats image',
+          reload: true
         }
       ]
     }
@@ -94,31 +96,34 @@ module.exports = function(environment) {
   return ENV;
 };
 ```
+
 About `useLocalStorage`: this property is not mandatory, but setting it to true register the new value of some flag in the local storage. This way, the values for all flags remain the same after refreshing your application.
+
+About `reload`: this property is not mandatory. It forces the browser to reload if this flag change. This is needed for flags involved in the setup of your application.
 
 ## Contributing
 
 ### Installation
 
-* `git clone git@github.com:peopledoc/ember-feature-controls.git`
-* `cd ember-feature-controls`
-* `npm install`
+- `git clone git@github.com:peopledoc/ember-feature-controls.git`
+- `cd ember-feature-controls`
+- `npm install`
 
 ### Linting
 
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+- `npm run lint:js`
+- `npm run lint:js -- --fix`
 
 ### Running tests
 
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
+- `ember test` – Runs the test suite on the current Ember version
+- `ember test --server` – Runs the test suite in "watch mode"
+- `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
 
 ### Running the dummy application
 
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+- `ember serve`
+- Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
