@@ -10,7 +10,9 @@ export function initialize(appInstance) {
       const flags = JSON.parse(featureControlsJSON);
       if (flags) {
         Object.keys(flags).forEach(flag => {
-          flags[flag] ? features.enable(flag) : features.disable(flag);
+          if (features.get('flags').includes(flag)) {
+            flags[flag] ? features.enable(flag) : features.disable(flag);
+          }
         });
       }
     }
