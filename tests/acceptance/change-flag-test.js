@@ -13,7 +13,7 @@ const reloadPage = function(appInstance) {
     config.featureFlags[flag] ? features.enable(flag) : features.disable(flag);
   });
   initialize(appInstance);
-}
+};
 
 module('Acceptance | change flag', function(hooks) {
   setupApplicationTest(hooks);
@@ -36,9 +36,15 @@ module('Acceptance | change flag', function(hooks) {
   test('it changes feature flags', async function(assert) {
     await visit('/__features');
     await click(find('[data-test-checkbox-flag=showBear]'));
-    assert.equal(find('[data-test-label-flag=showBear]').innerText.trim(), '❗');
+    assert.equal(
+      find('[data-test-label-flag=showBear]').innerText.trim(),
+      '❗'
+    );
     await click(find('[data-test-checkbox-flag=showBacon]'));
-    assert.equal(find('[data-test-label-flag=showBacon]').innerText.trim(), '❗');
+    assert.equal(
+      find('[data-test-label-flag=showBacon]').innerText.trim(),
+      '❗'
+    );
   });
 
   test('it persists the changes at link to another page', async function(assert) {
@@ -58,7 +64,10 @@ module('Acceptance | change flag', function(hooks) {
     await visit('/__features');
     await click(find('[data-test-checkbox-flag=showBacon]'));
     await click(find('[data-test-button-refresh]'));
-    assert.equal(find('[data-test-label-flag=showBacon]').innerText.trim(), '❗');
+    assert.equal(
+      find('[data-test-label-flag=showBacon]').innerText.trim(),
+      '❗'
+    );
   });
 
   test('it resets feature flags when clicking on reset button', async function(assert) {
@@ -94,7 +103,10 @@ module('Acceptance | change flag', function(hooks) {
     await visit('/');
     reloadPage(this.get('owner'));
     await visit('/__features');
-    assert.equal(find('[data-test-label-flag=showBacon]').innerText.trim(), '❗');
+    assert.equal(
+      find('[data-test-label-flag=showBacon]').innerText.trim(),
+      '❗'
+    );
   });
 
   test('with localStorage | it persists the flags when reloading after a reset', async function(assert) {
@@ -108,6 +120,19 @@ module('Acceptance | change flag', function(hooks) {
     await visit('/__features');
     assert.equal(find('[data-test-label-flag=showBear]').innerText.trim(), '');
     assert.equal(find('[data-test-label-flag=showBacon]').innerText.trim(), '');
+  });
+
+  test("with localStorage | it won't load unknown flags", async function(assert) {
+    window.localStorage.setItem(
+      'storage:feature-controls',
+      '{"fakeFlag":true}'
+    );
+    config.featureControls.useLocalStorage = true;
+    await visit('/__features');
+    assert.notOk(
+      find('[data-test-checkbox-flag=fakeFlag]'),
+      'fakeFlag is not registered'
+    );
   });
 
   test('without localStorage | it resets the changes when loading another URL', async function(assert) {
@@ -131,5 +156,4 @@ module('Acceptance | change flag', function(hooks) {
     await visit('/__features');
     assert.equal(find('[data-test-label-flag=showBacon]').innerText.trim(), '');
   });
-
 });
