@@ -13,7 +13,12 @@
         <td>{{flag.description}}</td>
         <td>
           <label data-test-label-flag={{flag.key}}>
-            {{input type='checkbox' checked=flag.isEnabled change=(action 'doToggleFeature' flag.key flag.isEnabled) data-test-checkbox-flag=flag.key}}
+            {{input
+              type="checkbox"
+              checked=flag.isEnabled
+              change=(action "doToggleFeature" flag.key flag.isEnabled)
+              data-test-checkbox-flag=flag.key
+            }}
             {{#if (not-eq flag.isEnabled flag.default)}}
               <span title="This flag was overriden">❗</span>
             {{/if}}
@@ -25,9 +30,9 @@
 </table>
 
 {{#if showRefresh}}
-  <button {{action 'refresh'}} data-test-button-refresh>Refresh</button>
+  <button {{action "refresh"}} data-test-button-refresh>Refresh</button>
 {{/if}}
 
 {{#if showReset}}
-  <button {{action 'reset'}} data-test-button-reset>Reset</button>
+  <button {{action "reset"}} data-test-button-reset>Reset</button>
 {{/if}}
