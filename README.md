@@ -1,6 +1,7 @@
 # ember-feature-controls
 
 [![Build Status](https://travis-ci.org/peopledoc/ember-feature-controls.svg?branch=master)](https://travis-ci.org/peopledoc/ember-feature-controls) [![Ember Observer Score](https://emberobserver.com/badges/ember-feature-controls.svg)](https://emberobserver.com/addons/ember-feature-controls)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Hot plug your features: `ember-feature-controls` provides an administration panel to enable or disable feature flags.
 
@@ -45,9 +46,9 @@ You can configure a route for feature-controls in your app. This will add a rout
 
 ```js
 // app/router.js
-import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
-import featureControlsRouteSetup from 'ember-feature-controls/route-setup';
+import EmberRouter from "@ember/routing/router";
+import config from "./config/environment";
+import featureControlsRouteSetup from "ember-feature-controls/route-setup";
 
 const Router = EmberRouter.extend({
   location: config.locationType,
@@ -55,7 +56,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  featureControlsRouteSetup(this, { path: '__features' });
+  featureControlsRouteSetup(this, { path: "__features" });
 });
 
 export default Router;
@@ -74,19 +75,19 @@ Then, you can configure a set of metadata for your feature flags by defining the
 module.exports = function(environment) {
   var ENV = {
     featureFlags: {
-      'show-spinners': true,
-      'download-cats': false
+      "show-spinners": true,
+      "download-cats": false
     },
     featureControls: {
       useLocalStorage: true,
       metadata: [
         {
-          key: 'show-spinners',
-          description: 'Show spinners'
+          key: "show-spinners",
+          description: "Show spinners"
         },
         {
-          key: 'download-cats',
-          description: 'Add button to download cats image',
+          key: "download-cats",
+          description: "Add button to download cats image",
           reload: true
         }
       ]
@@ -107,18 +108,19 @@ About `reload`: this property is not mandatory. It forces the browser to reload 
 
 - `git clone git@github.com:peopledoc/ember-feature-controls.git`
 - `cd ember-feature-controls`
-- `npm install`
+- `yarn install`
 
 ### Linting
 
-- `npm run lint:js`
-- `npm run lint:js -- --fix`
+- `yarn lint:hbs`
+- `yarn lint:js`
+- `yarn lint:js -- --fix`
 
 ### Running tests
 
 - `ember test` – Runs the test suite on the current Ember version
 - `ember test --server` – Runs the test suite in "watch mode"
-- `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
+- `ember try:each` – Runs the test suite against multiple Ember versions
 
 ### Running the dummy application
 
