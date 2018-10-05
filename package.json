@@ -8,7 +8,10 @@
     "feature-toggle",
     "features-switch"
   ],
-  "repository": "github:peopledoc/ember-feature-controls",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peopledoc/ember-feature-controls.git"
+  },
   "license": "MIT",
   "author": "Guillaume Gérard <guillaume.gerard88@gmail.com>",
   "directories": {
