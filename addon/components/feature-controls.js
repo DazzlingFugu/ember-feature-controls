@@ -11,6 +11,7 @@ const { featureFlags, featureControls } = config;
 
 export default Component.extend({
   layout,
+  tagName: '',
   features: service(),
   featuresLS: storageFor("feature-controls"),
   showRefresh: true,

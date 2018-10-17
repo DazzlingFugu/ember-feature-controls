@@ -1,4 +1,4 @@
-<table>
+<table class="ember-feature-controls-table">
   <thead>
     <tr>
       <th>Name</th>
@@ -12,7 +12,7 @@
         <td>{{flag.key}}</td>
         <td>{{flag.description}}</td>
         <td>
-          <label data-test-label-flag={{flag.key}}>
+          <label class="ember-feature-controls-label" data-test-label-flag={{flag.key}}>
             {{input
               type="checkbox"
               checked=flag.isEnabled
@@ -20,7 +20,12 @@
               data-test-checkbox-flag=flag.key
             }}
             {{#if (not-eq flag.isEnabled flag.default)}}
-              <span title="This flag was overriden">❗</span>
+              <span
+                class="ember-feature-controls-warning"
+                title="The internal default value of this flag is being overriden with this one"
+              >
+                ❗
+              </span>
             {{/if}}
           </label>
         </td>
@@ -30,9 +35,21 @@
 </table>
 
 {{#if showRefresh}}
-  <button {{action "refresh"}} data-test-button-refresh>Refresh</button>
+  <button
+    title="Refresh this table in case its state has been changed elsewhere"
+    class="ember-feature-controls-refresh ember-feature-controls-button" {{action "refresh"}}
+    data-test-button-refresh
+  >
+    Refresh table
+  </button>
 {{/if}}
 
 {{#if showReset}}
-  <button {{action "reset"}} data-test-button-reset>Reset</button>
+  <button
+    title="Reset table to internal default values"
+    class="ember-feature-controls-reset ember-feature-controls-button" {{action "reset"}}
+    data-test-button-reset
+  >
+    Reset to default
+  </button>
 {{/if}}
