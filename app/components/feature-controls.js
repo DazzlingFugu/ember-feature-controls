@@ -1,1 +1,1 @@
-export { default } from 'ember-feature-controls/components/feature-controls';
+export { default } from "ember-feature-controls/components/feature-controls";
