@@ -94,6 +94,10 @@ module.exports = function(environment) {
           key: "download-cats",
           description: "Add button to download cats image",
           reload: true
+        },
+        {
+          key: "easter-egg",
+          hide: true
         }
       ]
     }
@@ -106,6 +110,8 @@ module.exports = function(environment) {
 About `useLocalStorage`: this property is not mandatory, but setting it to true register the new value of some flag in the local storage. This way, the values for all flags remain the same after refreshing your application.
 
 About `reload`: this property is not mandatory. It forces the browser to reload if this flag change. This is needed for flags involved in the setup of your application.
+
+About `hide`: this property is not mandatory. It forces to hide the feature flag in the listing.
 
 ## License
 

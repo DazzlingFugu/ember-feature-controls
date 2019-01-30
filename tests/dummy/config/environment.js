@@ -23,7 +23,8 @@ module.exports = function(environment) {
     },
     featureFlags: {
       "show-bear": true,
-      "show-bacon": false
+      "show-bacon": false,
+      "easter-egg": false
     },
     featureControls: {
       useLocalStorage: true,
@@ -36,6 +37,11 @@ module.exports = function(environment) {
           key: "show-bacon",
           description: "Show some bacon (reload option)",
           reload: true
+        },
+        {
+          key: "easter-egg",
+          description: "Easter egg (hide option)",
+          hide: true
         }
       ]
     }

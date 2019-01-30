@@ -40,6 +40,9 @@ export default Component.extend({
             return this._normalizeFlag(obj.key) === key;
           }
         ) || {};
+      if (meta.hide === true) {
+        return undefined;
+      }
       let isFlagLS =
         this.get("featureControls.useLocalStorage") &&
         this.get(`featuresLS.${key}`) !== undefined;
@@ -52,7 +55,7 @@ export default Component.extend({
       };
       return assign({}, meta, featureFlag);
     });
-    set(this, "model", model);
+    set(this, "model", model.filter(item => item !== undefined));
   },
   reset() {
     // Reset the flags from the features service to the default value in the config
@@ -76,10 +79,12 @@ export default Component.extend({
     let modelFlag = model.find(obj => {
       return obj.key === key;
     });
-    set(modelFlag, "isEnabled", isEnabled);
-    set(this, "model", model);
-    if (modelFlag.reload) {
-      windowUtil.reload();
+    if (modelFlag) {
+      set(modelFlag, "isEnabled", isEnabled);
+      set(this, "model", model);
+      if (modelFlag.reload) {
+        windowUtil.reload();
+      }
     }
   },
   actions: {
