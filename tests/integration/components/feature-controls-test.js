@@ -25,7 +25,8 @@ const featuresMock = function(assert) {
 
 const featureFlags = {
   "flag-true": true,
-  "flag-false": false
+  "flag-false": false,
+  "flag-hide": false
 };
 
 const featureControls = {
@@ -33,11 +34,16 @@ const featureControls = {
   metadata: [
     {
       key: "flag-true",
-      description: "Show a bear"
+      description: "Flag True"
     },
     {
       key: "flag-false",
-      description: "Show some bacon"
+      description: "Flag False"
+    },
+    {
+      key: "flag-hide",
+      description: "Flag Hide",
+      hide: true
     }
   ]
 };
@@ -75,14 +81,13 @@ module("Integration | Component | feature-controls", function(hooks) {
   });
 
   test("it does not render reset and refresh button when specified", async function(assert) {
-    assert.expect(2);
     await render(hbs`{{feature-controls showRefresh=false showReset=false}}`);
     assert.dom("[data-test-button-refresh]").doesNotExist();
     assert.dom("[data-test-button-reset]").doesNotExist();
   });
 
   test("it renders multiple flags", async function(assert) {
-    assert.expect(6);
+    assert.expect(8);
     this.setProperties(testProperties(assert));
     await render(
       hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags}}`
@@ -98,11 +103,17 @@ module("Integration | Component | feature-controls", function(hooks) {
       .dom('[data-test-checkbox-flag="flagFalse"]')
       .isNotChecked("flagFalse should be unchecked");
     assert
+      .dom('[data-test-checkbox-flag="flagHide"]')
+      .doesNotExist("flagFalse is not rendered");
+    assert
       .dom('[data-test-label-flag="flagTrue"]')
       .hasText("", "flagTrue's label should be empty");
     assert
       .dom('[data-test-label-flag="flagFalse"]')
       .hasText("", "flagFalse's label should be empty");
+    assert
+      .dom('[data-test-label-flag="flagHide"]')
+      .doesNotExist("flagHide's label is not rendered");
   });
 
   test("it changes flags : 1 more assertion called when a flag is enabled", async function(assert) {
@@ -136,7 +147,7 @@ module("Integration | Component | feature-controls", function(hooks) {
   });
 
   test("without localStorage | it resets the flag at click on reset button : enable flag x1, disable flag x2", async function(assert) {
-    assert.expect(4);
+    assert.expect(5);
     this.setProperties(testProperties(assert));
     await render(
       hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featuresLS=featuresLS}}`
@@ -149,7 +160,7 @@ module("Integration | Component | feature-controls", function(hooks) {
   });
 
   test("with localStorage | it resets the flag at click on reset button : enable flag x1, disable flag x2, reset storage x1", async function(assert) {
-    assert.expect(5);
+    assert.expect(6);
     this.setProperties(testProperties(assert));
     this.set("featureControls.useLocalStorage", true);
     await render(
