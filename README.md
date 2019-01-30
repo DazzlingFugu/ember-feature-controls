@@ -9,6 +9,11 @@ Hot plug your features: `ember-feature-controls` provides an administration pane
 
 - To learn more about feature flags and how you can use them in your Ember app, read [this article](https://tech.people-doc.com/feature-flags-spa.html) by Xavier Cambar.
 
+## Compatibility
+
+- Ember.js v2.18 or above
+- Ember CLI v2.13 or above
+
 ## Installation
 
 ```
@@ -101,33 +106,6 @@ module.exports = function(environment) {
 About `useLocalStorage`: this property is not mandatory, but setting it to true register the new value of some flag in the local storage. This way, the values for all flags remain the same after refreshing your application.
 
 About `reload`: this property is not mandatory. It forces the browser to reload if this flag change. This is needed for flags involved in the setup of your application.
-
-## Contributing
-
-### Installation
-
-- `git clone git@github.com:peopledoc/ember-feature-controls.git`
-- `cd ember-feature-controls`
-- `yarn install`
-
-### Linting
-
-- `yarn lint:hbs`
-- `yarn lint:js`
-- `yarn lint:js -- --fix`
-
-### Running tests
-
-- `ember test` – Runs the test suite on the current Ember version
-- `ember test --server` – Runs the test suite in "watch mode"
-- `ember try:each` – Runs the test suite against multiple Ember versions
-
-### Running the dummy application
-
-- `ember serve`
-- Visit the dummy application at [http://localhost:4200](http://localhost:4200).
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
 ## License
 
