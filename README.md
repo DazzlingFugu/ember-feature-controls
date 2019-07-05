@@ -113,6 +113,10 @@ About `reload`: this property is not mandatory. It forces the browser to reload 
 
 About `hide`: this property is not mandatory. It forces to hide the feature flag in the listing.
 
+## Contributing
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE.md).
