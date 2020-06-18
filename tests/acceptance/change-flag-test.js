@@ -101,13 +101,13 @@ module("Acceptance | change flag", function(hooks) {
     config.featureControls.useLocalStorage = true;
     await visit("/__features");
     await click("[data-test-checkbox-flag=showBacon]");
-    reloadPage(this.get("owner"));
+    reloadPage(this.owner);
     await visit("/");
     assert.dom('img[alt="bear"]').exists();
     assert.dom('img[alt="bacon"]').exists();
     await visit("/__features");
     await click("[data-test-checkbox-flag=showBear]");
-    reloadPage(this.get("owner"));
+    reloadPage(this.owner);
     await visit("/");
     assert.dom('img[alt="bear"]').doesNotExist();
     assert.dom('img[alt="bacon"]').exists();
@@ -119,7 +119,7 @@ module("Acceptance | change flag", function(hooks) {
     await click("[data-test-checkbox-flag=showBacon]");
     await click("[data-test-button-refresh]");
     await visit("/");
-    reloadPage(this.get("owner"));
+    reloadPage(this.owner);
     await visit("/__features");
     assert.dom("[data-test-label-flag=showBacon]").hasText("❗");
   });
@@ -131,7 +131,7 @@ module("Acceptance | change flag", function(hooks) {
     await click("[data-test-checkbox-flag=showBacon]");
     await click("[data-test-button-reset]");
     await visit("/");
-    reloadPage(this.get("owner"));
+    reloadPage(this.owner);
     await visit("/__features");
     assert.dom("[data-test-label-flag=showBear]").hasText("");
     assert.dom("[data-test-label-flag=showBacon]").hasText("");
@@ -154,7 +154,7 @@ module("Acceptance | change flag", function(hooks) {
     await visit("/__features");
     await click("[data-test-checkbox-flag=showBear]");
     await click("[data-test-checkbox-flag=showBacon]");
-    reloadPage(this.get("owner"));
+    reloadPage(this.owner);
     await visit("/");
     assert.dom('img[alt="bear"]').exists();
     assert.dom('img[alt="bacon"]').doesNotExist();
@@ -166,7 +166,7 @@ module("Acceptance | change flag", function(hooks) {
     await click("[data-test-checkbox-flag=showBacon]");
     await click("[data-test-button-refresh]");
     await visit("/");
-    reloadPage(this.get("owner"));
+    reloadPage(this.owner);
     await visit("/__features");
     assert.dom("[data-test-label-flag=showBacon]").hasText("");
   });
