@@ -36,6 +36,7 @@
 
 {{#if showRefresh}}
   <button
+    type="button"
     title="Refresh this table in case its state has been changed elsewhere"
     class="ember-feature-controls-refresh ember-feature-controls-button" {{action "refresh"}}
     data-test-button-refresh
@@ -46,6 +47,7 @@
 
 {{#if showReset}}
   <button
+    type="button"
     title="Reset table to internal default values"
     class="ember-feature-controls-reset ember-feature-controls-button" {{action "reset"}}
     data-test-button-reset
