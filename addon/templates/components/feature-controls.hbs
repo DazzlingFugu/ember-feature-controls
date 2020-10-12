@@ -7,18 +7,18 @@
     </tr>
   </thead>
   <tbody>
-    {{#each model as |flag|}}
+    {{#each this.model as |flag|}}
       <tr>
         <td>{{flag.key}}</td>
         <td>{{flag.description}}</td>
         <td>
           <label class="ember-feature-controls-label" data-test-label-flag={{flag.key}}>
-            {{input
-              type="checkbox"
-              checked=flag.isEnabled
-              change=(action "doToggleFeature" flag.key flag.isEnabled)
-              data-test-checkbox-flag=flag.key
-            }}
+            <Input
+              @type="checkbox"
+              @checked={{flag.isEnabled}}
+              @change={{action "doToggleFeature" flag.key flag.isEnabled}}
+              data-test-checkbox-flag={{flag.key}}
+            />
             {{#if (not-eq flag.isEnabled flag.default)}}
               <span
                 class="ember-feature-controls-warning"
@@ -34,20 +34,24 @@
   </tbody>
 </table>
 
-{{#if showRefresh}}
+{{#if this.showRefresh}}
   <button
+    type="button"
     title="Refresh this table in case its state has been changed elsewhere"
-    class="ember-feature-controls-refresh ember-feature-controls-button" {{action "refresh"}}
+    class="ember-feature-controls-refresh ember-feature-controls-button"
+    {{action "refresh"}}
     data-test-button-refresh
   >
     Refresh table
   </button>
 {{/if}}
 
-{{#if showReset}}
+{{#if this.showReset}}
   <button
+    type="button"
     title="Reset table to internal default values"
-    class="ember-feature-controls-reset ember-feature-controls-button" {{action "reset"}}
+    class="ember-feature-controls-reset ember-feature-controls-button"
+    {{action "reset"}}
     data-test-button-reset
   >
     Reset to default
