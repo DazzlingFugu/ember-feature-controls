@@ -79,5 +79,8 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "resolutions": {
+    "clean-css": "^4.1.11"
   }
 }
