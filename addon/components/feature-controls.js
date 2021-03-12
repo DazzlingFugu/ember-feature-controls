@@ -1,7 +1,7 @@
 import Component from "@ember/component"
 import layout from "../templates/components/feature-controls"
 import { inject as service } from "@ember/service"
-import { set } from "@ember/object"
+import { action, set } from "@ember/object"
 import { assign } from "@ember/polyfills"
 import { storageFor } from "ember-local-storage"
 import config from "ember-get-config"
@@ -18,15 +18,18 @@ export default Component.extend({
   showReset: true,
   featureControls,
   featureFlags,
+
   init() {
     this._super(...arguments)
     this.refresh()
   },
+
   _normalizeFlag(key) {
     return this.features._normalizeFlag(key)
   },
+
   // Refresh the state of the feature flags list component
-  refresh() {
+  refresh: action(function() {
     // Take the existing flags from the config and put them in a list of default values
     let featureFlags = this.featureFlags
     let defaults = {}
@@ -57,8 +60,9 @@ export default Component.extend({
       return assign({}, meta, featureFlag)
     })
     set(this, "model", model.filter(item => item !== undefined))
-  },
-  reset() {
+  }),
+
+  reset: action(function() {
     // Reset the flags from the features service to the default value in the config
     let featureFlags = this.featureFlags
     Object.keys(featureFlags).forEach(key => {
@@ -68,7 +72,8 @@ export default Component.extend({
     if (this.featureControls.useLocalStorage) {
       this.featuresLS.reset()
     }
-  },
+  }),
+
   updateFeature(key, isEnabled) {
     if (isEnabled) {
       this.features.enable(key)
@@ -88,18 +93,11 @@ export default Component.extend({
       }
     }
   },
-  actions: {
-    refresh() {
-      this.refresh()
-    },
-    reset() {
-      this.reset()
-    },
-    doToggleFeature(key, checkboxState) {
-      this.updateFeature(key, !checkboxState)
-      if (this.featureControls.useLocalStorage) {
-        this.set(`featuresLS.${key}`, !checkboxState)
-      }
+
+  doToggleFeature: action(function(key, checkboxState) {
+    this.updateFeature(key, !checkboxState)
+    if (this.featureControls.useLocalStorage) {
+      this.set(`featuresLS.${key}`, !checkboxState)
     }
-  }
+  }),
 })
