@@ -1,3 +1,5 @@
+{{!-- template-lint-disable no-bare-strings --}}
+
 <table class="ember-feature-controls-table">
   <thead>
     <tr>
@@ -16,7 +18,7 @@
             <Input
               @type="checkbox"
               @checked={{flag.isEnabled}}
-              @change={{action "doToggleFeature" flag.key flag.isEnabled}}
+              {{on "change" (fn this.doToggleFeature flag.key flag.isEnabled)}}
               data-test-checkbox-flag={{flag.key}}
             />
             {{#if (not-eq flag.isEnabled flag.default)}}
@@ -39,7 +41,7 @@
     type="button"
     title="Refresh this table in case its state has been changed elsewhere"
     class="ember-feature-controls-refresh ember-feature-controls-button"
-    {{action "refresh"}}
+    {{on "click" this.refresh}}
     data-test-button-refresh
   >
     Refresh table
@@ -51,7 +53,7 @@
     type="button"
     title="Reset table to internal default values"
     class="ember-feature-controls-reset ember-feature-controls-button"
-    {{action "reset"}}
+    {{on "click" this.reset}}
     data-test-button-reset
   >
     Reset to default
