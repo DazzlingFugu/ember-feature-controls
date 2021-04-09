@@ -48,10 +48,12 @@ const featureControls = {
   ]
 }
 
-const storageMock = function(assert) {
+const storageServiceMock = function(assert) {
   return {
-    reset() {
-      assert.ok(true, "storageMock.reset() called")
+    featuresLS: {
+      reset() {
+        assert.ok(true, "storageMock.reset() called")
+      }
     }
   }
 }
@@ -61,7 +63,7 @@ const testProperties = function(assert) {
     features: featuresMock(assert),
     featureControls,
     featureFlags,
-    featuresLS: storageMock(assert)
+    featureControlStorage: storageServiceMock(assert)
   }
 }
 
@@ -120,7 +122,7 @@ module("Integration | Component | feature-controls", function(hooks) {
     assert.expect(3)
     this.setProperties(testProperties(assert))
     await render(
-      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featuresLS=featuresLS}}`
+      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featureControlStorage=featureControlStorage}}`
     )
     await click('[data-test-checkbox-flag="flagFalse"]')
     assert
@@ -135,7 +137,7 @@ module("Integration | Component | feature-controls", function(hooks) {
     assert.expect(3)
     this.setProperties(testProperties(assert))
     await render(
-      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featuresLS=featuresLS}}`
+      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featureControlStorage=featureControlStorage}}`
     )
     await click('[data-test-checkbox-flag="flagTrue"]')
     assert
@@ -150,7 +152,7 @@ module("Integration | Component | feature-controls", function(hooks) {
     assert.expect(5)
     this.setProperties(testProperties(assert))
     await render(
-      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featuresLS=featuresLS}}`
+      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featureControlStorage=featureControlStorage}}`
     )
     await click('[data-test-checkbox-flag="flagTrue"]')
     await click("[data-test-button-reset]")
@@ -164,7 +166,7 @@ module("Integration | Component | feature-controls", function(hooks) {
     this.setProperties(testProperties(assert))
     this.set("featureControls.useLocalStorage", true)
     await render(
-      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featuresLS=featuresLS}}`
+      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featureControlStorage=featureControlStorage}}`
     )
     await click('[data-test-checkbox-flag="flagTrue"]')
     await click("[data-test-button-reset]")

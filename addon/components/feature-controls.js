@@ -3,7 +3,6 @@ import layout from "../templates/components/feature-controls"
 import { inject as service } from "@ember/service"
 import { action, set } from "@ember/object"
 import { assign } from "@ember/polyfills"
-import { storageFor } from "ember-local-storage"
 import config from "ember-get-config"
 import windowUtil from "ember-feature-controls/utils/window"
 
@@ -13,7 +12,7 @@ export default Component.extend({
   layout,
   tagName: '',
   features: service(),
-  featuresLS: storageFor("feature-controls"),
+  featureControlStorage: service(),
   showRefresh: true,
   showReset: true,
   featureControls,
@@ -49,11 +48,11 @@ export default Component.extend({
       }
       let isFlagLS =
         this.featureControls.useLocalStorage &&
-        this.get(`featuresLS.${key}`) !== undefined
+        this.get(`featureControlStorage.featuresLS.${key}`) !== undefined
       let featureFlag = {
         key,
         isEnabled: isFlagLS
-          ? this.get(`featuresLS.${key}`)
+          ? this.get(`featureControlStorage.featuresLS.${key}`)
           : this.features.isEnabled(key),
         default: defaults[key] || false
       }
@@ -70,7 +69,7 @@ export default Component.extend({
     })
     // If we use local storage then we want to clear the stored data
     if (this.featureControls.useLocalStorage) {
-      this.featuresLS.reset()
+      this.featureControlStorage.featuresLS.reset()
     }
   }),
 
@@ -97,7 +96,7 @@ export default Component.extend({
   doToggleFeature: action(function(key, checkboxState) {
     this.updateFeature(key, !checkboxState)
     if (this.featureControls.useLocalStorage) {
-      this.set(`featuresLS.${key}`, !checkboxState)
+      this.set(`featureControlStorage.featuresLS.${key}`, !checkboxState)
     }
   }),
 })
