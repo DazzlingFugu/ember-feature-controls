@@ -57,7 +57,7 @@
     "ember-milligram": "^0.3.0",
     "ember-qunit": "^4.6.0",
     "ember-resolver": "^8.0.0",
-    "ember-source": "~3.24.1",
+    "ember-source": "~3.26.1",
     "ember-source-channel-url": "^3.0.0",
     "ember-template-lint": "^3.2.0",
     "ember-test-selectors": "^5.0.0",
