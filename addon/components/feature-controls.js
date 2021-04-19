@@ -5,30 +5,39 @@ import { action, set } from "@ember/object"
 import { assign } from "@ember/polyfills"
 import config from "ember-get-config"
 import windowUtil from "ember-feature-controls/utils/window"
+import classic from "ember-classic-decorator"
 
-const { featureFlags, featureControls } = config
-
-export default Component.extend({
-  layout,
-  tagName: '',
-  features: service(),
-  featureControlStorage: service(),
-  showRefresh: true,
-  showReset: true,
+const {
   featureControls,
   featureFlags,
+} = config
+
+@classic
+export default class FeatureControls extends Component {
+  @service featureControlStorage
+  @service features
+
+  layout = layout
+  tagName = ''
+
+  featureControls = featureControls
+  featureFlags = featureFlags
+
+  showRefresh = true
+  showReset = true
 
   init() {
-    this._super(...arguments)
+    super.init(...arguments)
     this.refresh()
-  },
+  }
 
   _normalizeFlag(key) {
     return this.features._normalizeFlag(key)
-  },
+  }
 
   // Refresh the state of the feature flags list component
-  refresh: action(function() {
+  @action
+  refresh() {
     // Take the existing flags from the config and put them in a list of default values
     let featureFlags = this.featureFlags
     let defaults = {}
@@ -59,9 +68,10 @@ export default Component.extend({
       return assign({}, meta, featureFlag)
     })
     set(this, "model", model.filter(item => item !== undefined))
-  }),
+  }
 
-  reset: action(function() {
+  @action
+  reset() {
     // Reset the flags from the features service to the default value in the config
     let featureFlags = this.featureFlags
     Object.keys(featureFlags).forEach(key => {
@@ -71,7 +81,7 @@ export default Component.extend({
     if (this.featureControls.useLocalStorage) {
       this.featureControlStorage.featuresLS.reset()
     }
-  }),
+  }
 
   updateFeature(key, isEnabled) {
     if (isEnabled) {
@@ -91,12 +101,13 @@ export default Component.extend({
         windowUtil.reload()
       }
     }
-  },
+  }
 
-  doToggleFeature: action(function(key, checkboxState) {
+  @action
+  doToggleFeature(key, checkboxState) {
     this.updateFeature(key, !checkboxState)
     if (this.featureControls.useLocalStorage) {
       this.set(`featureControlStorage.featuresLS.${key}`, !checkboxState)
     }
-  }),
-})
+  }
+}
