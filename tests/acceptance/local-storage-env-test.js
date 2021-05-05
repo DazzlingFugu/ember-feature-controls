@@ -40,7 +40,7 @@ module("Acceptance | local storage env", function(hooks) {
     await click("[data-test-checkbox-flag=showBacon]")
     assert.equal(
       window.localStorage.getItem("storage:feature-controls"),
-      null,
+      '{}',
       "local storage is empty"
     )
   })
