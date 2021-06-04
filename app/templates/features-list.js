@@ -1,1 +1,1 @@
-export { default } from "ember-feature-controls/templates/features-list"
+export { default } from 'ember-feature-controls/templates/features-list'

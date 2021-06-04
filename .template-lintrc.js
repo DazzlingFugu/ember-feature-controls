@@ -1,14 +1,11 @@
 'use strict'
 
 module.exports = {
-  extends: [
-    'octane',
-    'stylistic',
-  ],
+  extends: ['octane', 'stylistic'],
 
   rules: {
     'attribute-indentation': {
-      'indentation': 2,
+      indentation: 2,
       'open-invocation-max-len': 100,
     },
 
@@ -33,18 +30,13 @@ module.exports = {
 
   overrides: [
     {
-      files: [
-        '**/tests/dummy/**/*.hbs',
-        '**/tests/**/*.{js,ts}',
-      ],
+      files: ['**/tests/dummy/**/*.hbs', '**/tests/**/*.{js,ts}'],
       rules: {
         'no-bare-strings': 'off',
       },
     },
     {
-      files: [
-        '**/tests/dummy/app/templates/**/*.hbs',
-      ],
+      files: ['**/tests/dummy/app/templates/**/*.hbs'],
 
       rules: {
         'no-this-in-template-only-components': 'off',
