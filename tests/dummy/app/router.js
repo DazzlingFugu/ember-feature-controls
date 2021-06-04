@@ -7,7 +7,7 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL
 }
 
-Router.map(function() {
-  this.route("index", { path: "/" })
-  featureControlsRouteSetup(this, { path: "__features" })
+Router.map(function () {
+  this.route('index', { path: '/' })
+  featureControlsRouteSetup(this, { path: '__features' })
 })

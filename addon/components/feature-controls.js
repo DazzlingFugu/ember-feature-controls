@@ -1,15 +1,13 @@
-import Component from "@ember/component"
-import layout from "../templates/components/feature-controls"
-import { inject as service } from "@ember/service"
-import { action, set } from "@ember/object"
-import { assign } from "@ember/polyfills"
-import config from "ember-get-config"
-import windowUtil from "ember-feature-controls/utils/window"
+import Component from '@ember/component'
+import { inject as service } from '@ember/service'
+import { action, set } from '@ember/object'
+import { assign } from '@ember/polyfills'
+import config from 'ember-get-config'
+import windowUtil from 'ember-feature-controls/utils/window'
 
 const { featureFlags, featureControls } = config
 
 export default Component.extend({
-  layout,
   tagName: '',
   features: service(),
   featureControlStorage: service(),
@@ -28,7 +26,7 @@ export default Component.extend({
   },
 
   // Refresh the state of the feature flags list component
-  refresh: action(function() {
+  refresh: action(function () {
     // Take the existing flags from the config and put them in a list of default values
     let featureFlags = this.featureFlags
     let defaults = {}
@@ -36,10 +34,10 @@ export default Component.extend({
       defaults[this._normalizeFlag(key)] = featureFlags[key]
     }
     // Model is a local copy of the list of flags register for features service, used to compute properties on the full list
-    let model = (this.features.flags || []).map(key => {
+    let model = (this.features.flags || []).map((key) => {
       let meta =
         ((featureControls && this.featureControls.metadata) || []).find(
-          obj => {
+          (obj) => {
             return this._normalizeFlag(obj.key) === key
           }
         ) || {}
@@ -54,17 +52,21 @@ export default Component.extend({
         isEnabled: isFlagLS
           ? this.get(`featureControlStorage.featuresLS.${key}`)
           : this.features.isEnabled(key),
-        default: defaults[key] || false
+        default: defaults[key] || false,
       }
       return assign({}, meta, featureFlag)
     })
-    set(this, "model", model.filter(item => item !== undefined))
+    set(
+      this,
+      'model',
+      model.filter((item) => item !== undefined)
+    )
   }),
 
-  reset: action(function() {
+  reset: action(function () {
     // Reset the flags from the features service to the default value in the config
     let featureFlags = this.featureFlags
-    Object.keys(featureFlags).forEach(key => {
+    Object.keys(featureFlags).forEach((key) => {
       this.updateFeature(this._normalizeFlag(key), featureFlags[key])
     })
     // If we use local storage then we want to clear the stored data
@@ -81,19 +83,19 @@ export default Component.extend({
     }
     // Update the local model accordingly
     let model = this.model
-    let modelFlag = model.find(obj => {
+    let modelFlag = model.find((obj) => {
       return obj.key === key
     })
     if (modelFlag) {
-      set(modelFlag, "isEnabled", isEnabled)
-      set(this, "model", model)
+      set(modelFlag, 'isEnabled', isEnabled)
+      set(this, 'model', model)
       if (modelFlag.reload) {
         windowUtil.reload()
       }
     }
   },
 
-  doToggleFeature: action(function(key, checkboxState) {
+  doToggleFeature: action(function (key, checkboxState) {
     this.updateFeature(key, !checkboxState)
     if (this.featureControls.useLocalStorage) {
       this.set(`featureControlStorage.featuresLS.${key}`, !checkboxState)

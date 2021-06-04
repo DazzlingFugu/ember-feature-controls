@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'dummy',
     environment,
@@ -13,8 +13,8 @@ module.exports = function(environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
@@ -23,29 +23,29 @@ module.exports = function(environment) {
     },
 
     featureFlags: {
-      "show-bear": true,
-      "show-bacon": false,
-      "easter-egg": false
+      'show-bear': true,
+      'show-bacon': false,
+      'easter-egg': false,
     },
     featureControls: {
       useLocalStorage: true,
       metadata: [
         {
-          key: "show-bear",
-          description: "Show a bear"
+          key: 'show-bear',
+          description: 'Show a bear',
         },
         {
-          key: "show-bacon",
-          description: "Show some bacon (reload option)",
-          reload: true
+          key: 'show-bacon',
+          description: 'Show some bacon (reload option)',
+          reload: true,
         },
         {
-          key: "easter-egg",
-          description: "Easter egg (hide option)",
-          hide: true
-        }
-      ]
-    }
+          key: 'easter-egg',
+          description: 'Easter egg (hide option)',
+          hide: true,
+        },
+      ],
+    },
   }
 
   if (environment === 'development') {
