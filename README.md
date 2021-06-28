@@ -1,6 +1,6 @@
 # ember-feature-controls
 
-[![Build Status](https://travis-ci.org/peopledoc/ember-feature-controls.svg?branch=master)](https://travis-ci.org/peopledoc/ember-feature-controls) [![Ember Observer Score](https://emberobserver.com/badges/ember-feature-controls.svg)](https://emberobserver.com/addons/ember-feature-controls)
+[![CI](https://github.com/peopledoc/ember-feature-controls/actions/workflows/ci.yml/badge.svg)](https://github.com/peopledoc/ember-feature-controls/actions/workflows/ci.yml) [![Ember Observer Score](https://emberobserver.com/badges/ember-feature-controls.svg)](https://emberobserver.com/addons/ember-feature-controls)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Hot plug your features: `ember-feature-controls` provides an administration panel to enable or disable feature flags.
