@@ -42,6 +42,7 @@
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.1.4",
+    "@embroider/test-setup": "^0.43.5",
     "@glimmer/component": "^1.0.3",
     "@glimmer/tracking": "^1.0.3",
     "babel-eslint": "^10.1.0",
@@ -64,8 +65,8 @@
     "ember-resolver": "^8.0.2",
     "ember-source": "~3.24.0",
     "ember-source-channel-url": "^3.0.0",
-    "ember-test-selectors": "^5.0.0",
     "ember-template-lint": "^2.15.0",
+    "ember-test-selectors": "^5.0.0",
     "ember-try": "^1.4.0",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.1.0",
@@ -81,7 +82,7 @@
     "sass": "^1.32.11"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "node": "12.* || >= 14"
   },
   "ember": {
     "edition": "octane"
