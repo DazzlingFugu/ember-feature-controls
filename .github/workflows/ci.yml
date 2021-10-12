@@ -13,14 +13,14 @@
 # not change them. Doing so could break upgrade flow.
 #
 #$ browsers:
-#$   - chrome
+#$   - Chrome
 #$ emberTryScenarios:
-#$   - scenario: ember-lts-3.16
 #$   - scenario: ember-lts-3.20
+#$   - scenario: ember-lts-3.24
 #$   - scenario: ember-release
 #$   - scenario: ember-default-with-jquery
 #$   - scenario: ember-classic
-#$ nodeVersion: 12.x
+#$ nodeVersion: '12'
 #$ packageManager: yarn
 #
 
@@ -33,7 +33,7 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: '12.x'
+  NODE_VERSION: '12'
 
 jobs:
   lint:
@@ -44,7 +44,7 @@ jobs:
       with:
         fetch-depth: 1
 
-    - uses: actions/setup-node@v2-beta
+    - uses: actions/setup-node@v2
       with:
         node-version: '${{ env.NODE_VERSION }}'
 
@@ -82,14 +82,14 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        browser: [chrome]
+        browser: [Chrome]
 
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 1
 
-    - uses: actions/setup-node@v2-beta
+    - uses: actions/setup-node@v2
       with:
         node-version: '${{ env.NODE_VERSION }}'
 
@@ -127,14 +127,14 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        browser: [chrome]
+        browser: [Chrome]
 
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 1
 
-    - uses: actions/setup-node@v2-beta
+    - uses: actions/setup-node@v2
       with:
         node-version: '${{ env.NODE_VERSION }}'
 
@@ -170,11 +170,11 @@ jobs:
       fail-fast: true
       matrix:
         ember-try-scenario: [
-          lts-3.20,
-          lts-3.24,
-          release,
-          default-with-jquery,
-          classic
+          ember-lts-3.20,
+          ember-lts-3.24,
+          ember-release,
+          ember-default-with-jquery,
+          ember-classic
         ]
 
     steps:
@@ -182,7 +182,7 @@ jobs:
       with:
         fetch-depth: 1
 
-    - uses: actions/setup-node@v2-beta
+    - uses: actions/setup-node@v2
       with:
         node-version: '${{ env.NODE_VERSION }}'
 

@@ -176,6 +176,7 @@ module('Integration | Component | feature-controls', function (hooks) {
   })
 
   test('it updates the model at click on refresh', async function (assert) {
+    assert.expect(4)
     this.setProperties(testProperties(assert))
     await render(
       hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags}}`
