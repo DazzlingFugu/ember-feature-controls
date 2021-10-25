@@ -27,7 +27,7 @@ module('Acceptance | local storage env', function (hooks) {
     config.featureControls.useLocalStorage = true
     await visit('/__features')
     await click('[data-test-checkbox-flag=showBacon]')
-    assert.equal(
+    assert.strictEqual(
       window.localStorage.getItem('storage:feature-controls'),
       '{"showBacon":true}',
       'local storage has an item'
@@ -38,7 +38,7 @@ module('Acceptance | local storage env', function (hooks) {
     config.featureControls.useLocalStorage = false
     await visit('/__features')
     await click('[data-test-checkbox-flag=showBacon]')
-    assert.equal(
+    assert.strictEqual(
       window.localStorage.getItem('storage:feature-controls'),
       '{}',
       'local storage is empty'
