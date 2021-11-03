@@ -10,6 +10,7 @@
   ],
   "homepage": "https://github.com/peopledoc/ember-feature-controls",
   "repository": "https://github.com/peopledoc/ember-feature-controls",
+  "bugs": "https://github.com/peopledoc/ember-feature-controls/issues",
   "license": "MIT",
   "author": {
     "name": "PeopleDoc",
