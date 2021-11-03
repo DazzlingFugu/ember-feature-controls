@@ -10,7 +10,10 @@
   ],
   "repository": "https://github.com/peopledoc/ember-feature-controls",
   "license": "MIT",
-  "author": "Guillaume Gérard <guillaume.gerard88@gmail.com>",
+  "author": {
+    "name": "PeopleDoc",
+    "url": "https://github.com/peopledoc"
+  },
   "scripts": {
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
