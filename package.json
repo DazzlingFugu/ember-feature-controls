@@ -11,10 +11,14 @@
   "repository": "https://github.com/peopledoc/ember-feature-controls",
   "bugs": "https://github.com/peopledoc/ember-feature-controls/issues",
   "keywords": [
+    "ember",
+    "emberjs",
     "ember-addon",
     "feature-flag",
     "feature-toggle",
-    "features-switch"
+    "features",
+    "features-switch",
+    "hot-plug"
   ],
   "scripts": {
     "build": "ember build --environment=production",
