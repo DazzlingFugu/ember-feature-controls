@@ -1,23 +1,25 @@
 {
   "name": "ember-feature-controls",
-  "version": "2.0.0",
   "description": "Hot plug your features.",
+  "version": "2.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "PeopleDoc",
+    "url": "https://github.com/peopledoc"
+  },
+  "homepage": "https://github.com/peopledoc/ember-feature-controls",
+  "repository": "https://github.com/peopledoc/ember-feature-controls",
+  "bugs": "https://github.com/peopledoc/ember-feature-controls/issues",
   "keywords": [
+    "ember",
+    "emberjs",
     "ember-addon",
     "feature-flag",
     "feature-toggle",
-    "features-switch"
+    "features",
+    "features-switch",
+    "hot-plug"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/peopledoc/ember-feature-controls"
-  },
-  "license": "MIT",
-  "author": "Guillaume Gérard <guillaume.gerard88@gmail.com>",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
   "scripts": {
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
