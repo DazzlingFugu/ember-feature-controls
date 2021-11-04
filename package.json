@@ -38,7 +38,7 @@
     "ember-cli-htmlbars": "^6.0.0",
     "ember-feature-flags": "^6.0.0",
     "ember-get-config": "^0.3.0",
-    "ember-local-storage": "^1.7.2",
+    "ember-local-storage": "^2.0.1",
     "ember-truth-helpers": "^3.0.0"
   },
   "devDependencies": {
