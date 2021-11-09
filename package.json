@@ -31,8 +31,7 @@
     "start": "ember serve",
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test",
-    "test:ember-compatibility": "ember try:each",
-    "contributors": "contributor-faces -e \"(*-bot|*\\[bot\\]|ember-tomster)\""
+    "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
     "ember-cli-babel": "^7.26.6",
@@ -50,7 +49,6 @@
     "@glimmer/tracking": "^1.0.4",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
-    "contributor-faces": "^1.1.0",
     "ember-auto-import": "^2.2.0",
     "ember-cli": "~3.28.1",
     "ember-cli-dependency-checker": "^3.2.0",
