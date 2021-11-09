@@ -121,6 +121,73 @@ See the [Contributing](CONTRIBUTING.md) guide for details.
 ## Contributors
 
 <!-- readme: contributors,ember-tomster/- -start -->
+<table>
+<tr>
+    <td align="center">
+        <a href="https://github.com/GreatWizard">
+            <img src="https://avatars.githubusercontent.com/u/1322081?v=4" width="100;" alt="GreatWizard"/>
+            <br />
+            <sub><b>GreatWizard</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/MrChocolatine">
+            <img src="https://avatars.githubusercontent.com/u/47531779?v=4" width="100;" alt="MrChocolatine"/>
+            <br />
+            <sub><b>MrChocolatine</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/BlueCutOfficial">
+            <img src="https://avatars.githubusercontent.com/u/22059380?v=4" width="100;" alt="BlueCutOfficial"/>
+            <br />
+            <sub><b>BlueCutOfficial</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/saintsebastian">
+            <img src="https://avatars.githubusercontent.com/u/8288415?v=4" width="100;" alt="saintsebastian"/>
+            <br />
+            <sub><b>saintsebastian</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/yonmey">
+            <img src="https://avatars.githubusercontent.com/u/3025706?v=4" width="100;" alt="yonmey"/>
+            <br />
+            <sub><b>yonmey</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/romgere">
+            <img src="https://avatars.githubusercontent.com/u/13900970?v=4" width="100;" alt="romgere"/>
+            <br />
+            <sub><b>romgere</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/cah-danmonroe">
+            <img src="https://avatars.githubusercontent.com/u/11519684?v=4" width="100;" alt="cah-danmonroe"/>
+            <br />
+            <sub><b>cah-danmonroe</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/amessinger">
+            <img src="https://avatars.githubusercontent.com/u/3007703?v=4" width="100;" alt="amessinger"/>
+            <br />
+            <sub><b>amessinger</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Pixelik">
+            <img src="https://avatars.githubusercontent.com/u/1423394?v=4" width="100;" alt="Pixelik"/>
+            <br />
+            <sub><b>Pixelik</b></sub>
+        </a>
+    </td></tr>
+</table>
 <!-- readme: contributors,ember-tomster/- -end -->
 
 ## License
