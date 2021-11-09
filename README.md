@@ -118,20 +118,10 @@ About `hide`: this property is not mandatory. It forces to hide the feature flag
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
-## Contributors ✨
+## Contributors
 
-[//]: contributor-faces
-<a href="https://github.com/GreatWizard"><img src="https://avatars.githubusercontent.com/u/1322081?v=4" title="GreatWizard" width="80" height="80"></a>
-<a href="https://github.com/MrChocolatine"><img src="https://avatars.githubusercontent.com/u/47531779?v=4" title="MrChocolatine" width="80" height="80"></a>
-<a href="https://github.com/BlueCutOfficial"><img src="https://avatars.githubusercontent.com/u/22059380?v=4" title="BlueCutOfficial" width="80" height="80"></a>
-<a href="https://github.com/saintsebastian"><img src="https://avatars.githubusercontent.com/u/8288415?v=4" title="saintsebastian" width="80" height="80"></a>
-<a href="https://github.com/yonmey"><img src="https://avatars.githubusercontent.com/u/3025706?v=4" title="yonmey" width="80" height="80"></a>
-<a href="https://github.com/romgere"><img src="https://avatars.githubusercontent.com/u/13900970?v=4" title="romgere" width="80" height="80"></a>
-<a href="https://github.com/cah-danmonroe"><img src="https://avatars.githubusercontent.com/u/11519684?v=4" title="cah-danmonroe" width="80" height="80"></a>
-<a href="https://github.com/amessinger"><img src="https://avatars.githubusercontent.com/u/3007703?v=4" title="amessinger" width="80" height="80"></a>
-<a href="https://github.com/Pixelik"><img src="https://avatars.githubusercontent.com/u/1423394?v=4" title="Pixelik" width="80" height="80"></a>
-
-[//]: contributor-faces
+<!-- readme: contributors,ember-tomster/- -start -->
+<!-- readme: contributors,ember-tomster/- -end -->
 
 ## License
 
