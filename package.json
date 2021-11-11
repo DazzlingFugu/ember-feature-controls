@@ -20,6 +20,12 @@
     "features-switch",
     "hot-plug"
   ],
+  "files": [
+    "/addon",
+    "/app",
+    "/config",
+    "/index.js"
+  ],
   "scripts": {
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
