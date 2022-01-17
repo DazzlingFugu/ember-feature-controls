@@ -30,17 +30,17 @@ It displays an administration panel to enable or disable feature flags.
 
 ### Within a template
 
-The addon provides a component `{{feature-controls}}` to add in a template of your app.
+The addon provides a component `<FeatureControls />` to add in a template of your app.
 This component basically displays the table with actions buttons.
 
 ```hbs
-{{feature-controls}}
+<FeatureControls />
 ```
 
 #### Options
 
 ```hbs
-{{feature-controls showRefresh=false showReset=false}}
+<FeatureControls @showRefresh={{false}} @showReset={{false}} />
 ```
 
 - `showRefresh`: Show the refresh button, true by default
