@@ -43,7 +43,6 @@
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^6.0.0",
     "ember-feature-flags": "^6.0.0",
-    "ember-get-config": "^0.3.0",
     "ember-local-storage": "^2.0.1",
     "ember-truth-helpers": "^3.0.0"
   },
@@ -53,7 +52,7 @@
     "@embroider/test-setup": "^0.47.1",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "babel-eslint": "^10.1.0",
+    "babel-eslint": "^8.0.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "^2.2.0",
     "ember-cli": "~3.28.1",

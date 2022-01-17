@@ -2,7 +2,7 @@ import { module, test } from 'qunit'
 import { setupApplicationTest } from 'ember-qunit'
 import { visit, click } from '@ember/test-helpers'
 import config from 'dummy/config/environment'
-import { _resetStorages } from 'ember-local-storage/helpers/storage'
+import resetStorages from 'ember-local-storage/test-support/reset-storage'
 import windowUtil from 'ember-feature-controls/utils/window'
 
 const baseConfig = config.featureControls
@@ -19,8 +19,13 @@ module('Acceptance | local storage env', function (hooks) {
   hooks.afterEach(function () {
     windowUtil.reload = originalWindowReload
     config.featureControls = baseConfig
-    window.localStorage.clear()
-    _resetStorages()
+    if (window.localStorage) {
+      window.localStorage.clear()
+    }
+    if (window.sessionStorage) {
+      window.sessionStorage.clear()
+    }
+    resetStorages()
   })
 
   test('it saves to local storage when specified in config', async function (assert) {

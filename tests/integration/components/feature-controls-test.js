@@ -1,98 +1,100 @@
-import { module, test } from 'qunit'
+import { module, test, assert } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
 import { render, click } from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 import { camelize } from '@ember/string'
-import { _resetStorages } from 'ember-local-storage/helpers/storage'
+import resetStorages from 'ember-local-storage/test-support/reset-storage'
+import Service from '@ember/service'
 
-const featuresMock = function (assert) {
-  return {
-    flags: [camelize('flag-true'), camelize('flag-false')],
-    isEnabled(key) {
-      return key === camelize('flag-true')
-    },
-    _normalizeFlag(key) {
-      return camelize(key)
-    },
-    disable() {
-      assert.ok(true, 'featuresMock.disable() called')
-    },
-    enable() {
-      assert.ok(true, 'featuresMock.enable() called')
+class MockFeatureService extends Service {
+  flags = [camelize('flag-true'), camelize('flag-false')]
+  isEnabled(key) {
+    return key === camelize('flag-true')
+  }
+  _normalizeFlag(key) {
+    return camelize(key)
+  }
+  disable() {
+    assert.ok(true, 'featuresMock.disable() called')
+  }
+  enable() {
+    assert.ok(true, 'featuresMock.enable() called')
+  }
+}
+class MockStorageService extends Service {
+  featuresLS = {
+    reset() {
+      assert.ok(true, 'storageMock.reset() called')
     },
   }
 }
 
-const featureFlags = {
-  'flag-true': true,
-  'flag-false': false,
-  'flag-hide': false,
-}
-
-const featureControls = {
-  useLocalStorage: false,
-  metadata: [
-    {
-      key: 'flag-true',
-      description: 'Flag True',
-    },
-    {
-      key: 'flag-false',
-      description: 'Flag False',
-    },
-    {
-      key: 'flag-hide',
-      description: 'Flag Hide',
-      hide: true,
-    },
-  ],
-}
-
-const storageServiceMock = function (assert) {
-  return {
-    featuresLS: {
-      reset() {
-        assert.ok(true, 'storageMock.reset() called')
+const testProperties = {
+  featureControls: {
+    useLocalStorage: false,
+    metadata: [
+      {
+        key: 'flag-true',
+        description: 'Flag True',
       },
-    },
-  }
-}
-
-const testProperties = function (assert) {
-  return {
-    features: featuresMock(assert),
-    featureControls,
-    featureFlags,
-    featureControlStorage: storageServiceMock(assert),
-  }
+      {
+        key: 'flag-false',
+        description: 'Flag False',
+      },
+      {
+        key: 'flag-hide',
+        description: 'Flag Hide',
+        hide: true,
+      },
+    ],
+  },
+  featureFlags: {
+    'flag-true': true,
+    'flag-false': false,
+    'flag-hide': false,
+  },
 }
 
 module('Integration | Component | feature-controls', function (hooks) {
   setupRenderingTest(hooks)
 
+  hooks.beforeEach(function () {
+    this.owner.unregister('service:features')
+    this.owner.register('service:features', MockFeatureService)
+    this.owner.unregister('service:feature-controls-storage')
+    this.owner.register('service:feature-controls-storage', MockStorageService)
+    this.setProperties(testProperties)
+  })
+
   hooks.afterEach(function () {
-    window.localStorage.clear()
-    _resetStorages()
+    if (window.localStorage) {
+      window.localStorage.clear()
+    }
+    if (window.sessionStorage) {
+      window.sessionStorage.clear()
+    }
+    resetStorages()
   })
 
   test('it renders with reset and refresh button by default', async function (assert) {
     assert.expect(2)
-    await render(hbs`{{feature-controls}}`)
+    await render(hbs`<FeatureControls />`)
     assert.dom('[data-test-button-refresh]').exists()
     assert.dom('[data-test-button-reset]').exists()
   })
 
   test('it does not render reset and refresh button when specified', async function (assert) {
-    await render(hbs`{{feature-controls showRefresh=false showReset=false}}`)
+    await render(
+      hbs`<FeatureControls @showRefresh={{false}} @showReset={{false}} />`
+    )
     assert.dom('[data-test-button-refresh]').doesNotExist()
     assert.dom('[data-test-button-reset]').doesNotExist()
   })
 
   test('it renders multiple flags', async function (assert) {
     assert.expect(8)
-    this.setProperties(testProperties(assert))
     await render(
-      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags}}`
+      hbs`<FeatureControls @featureControls={{this.featureControls}} @featureFlags={{this.featureFlags}} />`
     )
     assert.dom('table').exists('there should be a table element')
     assert
@@ -120,9 +122,8 @@ module('Integration | Component | feature-controls', function (hooks) {
 
   test('it changes flags : 1 more assertion called when a flag is enabled', async function (assert) {
     assert.expect(3)
-    this.setProperties(testProperties(assert))
     await render(
-      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featureControlStorage=featureControlStorage}}`
+      hbs`<FeatureControls @featureControls={{this.featureControls}} @featureFlags={{this.featureFlags}} />`
     )
     await click('[data-test-checkbox-flag="flagFalse"]')
     assert
@@ -135,9 +136,8 @@ module('Integration | Component | feature-controls', function (hooks) {
 
   test('it changes flags : 1 more assertion called when a flag is disabled', async function (assert) {
     assert.expect(3)
-    this.setProperties(testProperties(assert))
     await render(
-      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featureControlStorage=featureControlStorage}}`
+      hbs`<FeatureControls @featureControls={{this.featureControls}} @featureFlags={{this.featureFlags}} />`
     )
     await click('[data-test-checkbox-flag="flagTrue"]')
     assert
@@ -150,9 +150,8 @@ module('Integration | Component | feature-controls', function (hooks) {
 
   test('without localStorage | it resets the flag at click on reset button : enable flag x1, disable flag x2', async function (assert) {
     assert.expect(5)
-    this.setProperties(testProperties(assert))
     await render(
-      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featureControlStorage=featureControlStorage}}`
+      hbs`<FeatureControls @featureControls={{this.featureControls}} @featureFlags={{this.featureFlags}} />`
     )
     await click('[data-test-checkbox-flag="flagTrue"]')
     await click('[data-test-button-reset]')
@@ -163,10 +162,9 @@ module('Integration | Component | feature-controls', function (hooks) {
 
   test('with localStorage | it resets the flag at click on reset button : enable flag x1, disable flag x2, reset storage x1', async function (assert) {
     assert.expect(6)
-    this.setProperties(testProperties(assert))
     this.set('featureControls.useLocalStorage', true)
     await render(
-      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags featureControlStorage=featureControlStorage}}`
+      hbs`<FeatureControls @featureControls={{this.featureControls}} @featureFlags={{this.featureFlags}} />`
     )
     await click('[data-test-checkbox-flag="flagTrue"]')
     await click('[data-test-button-reset]')
@@ -177,9 +175,8 @@ module('Integration | Component | feature-controls', function (hooks) {
 
   test('it updates the model at click on refresh', async function (assert) {
     assert.expect(4)
-    this.setProperties(testProperties(assert))
     await render(
-      hbs`{{feature-controls featureControls=featureControls features=features featureFlags=featureFlags}}`
+      hbs`<FeatureControls @featureControls={{this.featureControls}} @featureFlags={{this.featureFlags}} />`
     )
     this.set('featureFlags', {
       'flag-true': false,

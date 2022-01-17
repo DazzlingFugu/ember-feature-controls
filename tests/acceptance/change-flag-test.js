@@ -1,23 +1,10 @@
 import { module, test } from 'qunit'
 import { visit, click } from '@ember/test-helpers'
 import { setupApplicationTest } from 'ember-qunit'
-import { _resetStorages } from 'ember-local-storage/helpers/storage'
-import { initialize } from 'ember-feature-controls/instance-initializers/load-feature-controls'
-import config from 'dummy/config/environment'
+import resetStorages from 'ember-local-storage/test-support/reset-storage'
 import windowUtil from 'ember-feature-controls/utils/window'
 
-const baseConfig = config.featureControls
-
 const originalWindowReload = windowUtil.reload
-
-// Simulates the instructions done at page reload
-const reloadPage = function (appInstance) {
-  const features = appInstance.lookup('service:features')
-  Object.keys(config.featureFlags).forEach((flag) => {
-    config.featureFlags[flag] ? features.enable(flag) : features.disable(flag)
-  })
-  initialize(appInstance)
-}
 
 module('Acceptance | change flag', function (hooks) {
   setupApplicationTest(hooks)
@@ -28,9 +15,13 @@ module('Acceptance | change flag', function (hooks) {
 
   hooks.afterEach(function () {
     windowUtil.reload = originalWindowReload
-    config.featureControls = baseConfig
-    window.localStorage.clear()
-    _resetStorages()
+    if (window.localStorage) {
+      window.localStorage.clear()
+    }
+    if (window.sessionStorage) {
+      window.sessionStorage.clear()
+    }
+    resetStorages()
   })
 
   test('it initializes the app with bear on and bacon off', async function (assert) {
@@ -95,76 +86,5 @@ module('Acceptance | change flag', function (hooks) {
     }
     await visit('/__features')
     await click('[data-test-checkbox-flag=showBacon]')
-  })
-
-  test('with localStorage | it persists the changes when loading another URL', async function (assert) {
-    config.featureControls.useLocalStorage = true
-    await visit('/__features')
-    await click('[data-test-checkbox-flag=showBacon]')
-    reloadPage(this.owner)
-    await visit('/')
-    assert.dom('img[alt="bear"]').exists()
-    assert.dom('img[alt="bacon"]').exists()
-    await visit('/__features')
-    await click('[data-test-checkbox-flag=showBear]')
-    reloadPage(this.owner)
-    await visit('/')
-    assert.dom('img[alt="bear"]').doesNotExist()
-    assert.dom('img[alt="bacon"]').exists()
-  })
-
-  test('with localStorage | it persists the flags when reloading after a refresh', async function (assert) {
-    config.featureControls.useLocalStorage = true
-    await visit('/__features')
-    await click('[data-test-checkbox-flag=showBacon]')
-    await click('[data-test-button-refresh]')
-    await visit('/')
-    reloadPage(this.owner)
-    await visit('/__features')
-    assert.dom('[data-test-label-flag=showBacon]').hasText('❗')
-  })
-
-  test('with localStorage | it persists the flags when reloading after a reset', async function (assert) {
-    config.featureControls.useLocalStorage = true
-    await visit('/__features')
-    await click('[data-test-checkbox-flag=showBear]')
-    await click('[data-test-checkbox-flag=showBacon]')
-    await click('[data-test-button-reset]')
-    await visit('/')
-    reloadPage(this.owner)
-    await visit('/__features')
-    assert.dom('[data-test-label-flag=showBear]').hasText('')
-    assert.dom('[data-test-label-flag=showBacon]').hasText('')
-  })
-
-  test("with localStorage | it won't load unknown flags", async function (assert) {
-    window.localStorage.setItem('storage:feature-controls', '{"fakeFlag":true}')
-    config.featureControls.useLocalStorage = true
-    await visit('/__features')
-    assert
-      .dom('[data-test-checkbox-flag=fakeFlag]')
-      .doesNotExist('fakeFlag is not registered')
-  })
-
-  test('without localStorage | it resets the changes when loading another URL', async function (assert) {
-    config.featureControls.useLocalStorage = false
-    await visit('/__features')
-    await click('[data-test-checkbox-flag=showBear]')
-    await click('[data-test-checkbox-flag=showBacon]')
-    reloadPage(this.owner)
-    await visit('/')
-    assert.dom('img[alt="bear"]').exists()
-    assert.dom('img[alt="bacon"]').doesNotExist()
-  })
-
-  test('without localStorage | it resets the flags when reloading after a refresh', async function (assert) {
-    config.featureControls.useLocalStorage = false
-    await visit('/__features')
-    await click('[data-test-checkbox-flag=showBacon]')
-    await click('[data-test-button-refresh]')
-    await visit('/')
-    reloadPage(this.owner)
-    await visit('/__features')
-    assert.dom('[data-test-label-flag=showBacon]').hasText('')
   })
 })
