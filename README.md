@@ -1,13 +1,10 @@
 # ember-feature-controls
 
-[![CI](https://github.com/peopledoc/ember-feature-controls/actions/workflows/ci.yml/badge.svg)](https://github.com/peopledoc/ember-feature-controls/actions/workflows/ci.yml) [![Ember Observer Score](https://emberobserver.com/badges/ember-feature-controls.svg)](https://emberobserver.com/addons/ember-feature-controls)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/DazzlingFugu/ember-feature-controls/actions/workflows/ci.yml/badge.svg)](https://github.com/DazzlingFugu/ember-feature-controls/actions/workflows/ci.yml) [![Ember Observer Score](https://emberobserver.com/badges/ember-feature-controls.svg)](https://emberobserver.com/addons/ember-feature-controls) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Hot plug your features: `ember-feature-controls` provides an administration panel to enable or disable feature flags.
 
-- Demo is available here: [https://peopledoc.github.io/ember-feature-controls/](https://peopledoc.github.io/ember-feature-controls/).
-
-- To learn more about feature flags and how you can use them in your Ember app, read [this article](https://tech.people-doc.com/feature-flags-spa.html) by Xavier Cambar.
+Demo is available here: [https://dazzlingfugu.github.io/ember-feature-controls/](https://dazzlingfugu.github.io/ember-feature-controls/).
 
 ## Compatibility
 
