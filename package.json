@@ -4,12 +4,12 @@
   "version": "4.0.0",
   "license": "MIT",
   "author": {
-    "name": "PeopleDoc",
-    "url": "https://github.com/peopledoc"
+    "name": "Dazzling Fugu",
+    "url": "https://github.com/DazzlingFugu"
   },
-  "homepage": "https://github.com/peopledoc/ember-feature-controls",
-  "repository": "https://github.com/peopledoc/ember-feature-controls",
-  "bugs": "https://github.com/peopledoc/ember-feature-controls/issues",
+  "homepage": "https://github.com/DazzlingFugu/ember-feature-controls",
+  "repository": "https://github.com/DazzlingFugu/ember-feature-controls",
+  "bugs": "https://github.com/DazzlingFugu/ember-feature-controls/issues",
   "keywords": [
     "ember",
     "emberjs",
