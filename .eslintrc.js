@@ -9,6 +9,9 @@ module.exports = {
     ecmaFeatures: {
       legacyDecorators: true,
     },
+    babelOptions: {
+      plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
+    },
     requireConfigFile: false,
   },
   plugins: ['ember'],
