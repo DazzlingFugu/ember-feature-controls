@@ -47,9 +47,9 @@
     "ember-truth-helpers": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.2",
-    "@babel/eslint-parser": "^7.18.2",
-    "@babel/plugin-proposal-decorators": "^7.18.2",
+    "@babel/core": "^7.18.10",
+    "@babel/eslint-parser": "^7.18.9",
+    "@babel/plugin-proposal-decorators": "^7.18.10",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.4.2",
     "@embroider/test-setup": "^1.6.0",
@@ -75,7 +75,7 @@
     "ember-template-lint": "^3.6.0",
     "ember-test-selectors": "^6.0.0",
     "ember-try": "^2.0.0",
-    "eslint": "^8.16.0",
+    "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-ember": "^10.5.4",
     "eslint-plugin-n": "^15.2.1",
