@@ -135,10 +135,10 @@ See the [Contributing](CONTRIBUTING.md) guide for details.
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/BlueCutOfficial">
-            <img src="https://avatars.githubusercontent.com/u/22059380?v=4" width="100;" alt="BlueCutOfficial"/>
+        <a href="https://github.com/romgere">
+            <img src="https://avatars.githubusercontent.com/u/13900970?v=4" width="100;" alt="romgere"/>
             <br />
-            <sub><b>BlueCutOfficial</b></sub>
+            <sub><b>romgere</b></sub>
         </a>
     </td>
     <td align="center">
@@ -156,25 +156,25 @@ See the [Contributing](CONTRIBUTING.md) guide for details.
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/romgere">
-            <img src="https://avatars.githubusercontent.com/u/13900970?v=4" width="100;" alt="romgere"/>
-            <br />
-            <sub><b>romgere</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
         <a href="https://github.com/cah-danmonroe">
             <img src="https://avatars.githubusercontent.com/u/11519684?v=4" width="100;" alt="cah-danmonroe"/>
             <br />
             <sub><b>cah-danmonroe</b></sub>
         </a>
-    </td>
+    </td></tr>
+<tr>
     <td align="center">
         <a href="https://github.com/amessinger">
             <img src="https://avatars.githubusercontent.com/u/3007703?v=4" width="100;" alt="amessinger"/>
             <br />
             <sub><b>amessinger</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/BlueCutOfficial">
+            <img src="https://avatars.githubusercontent.com/u/22059380?v=4" width="100;" alt="BlueCutOfficial"/>
+            <br />
+            <sub><b>BlueCutOfficial</b></sub>
         </a>
     </td>
     <td align="center">
