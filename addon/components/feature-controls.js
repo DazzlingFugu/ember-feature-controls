@@ -51,7 +51,7 @@ export default class FeatureControlsComponent extends Component {
     )
 
     // Model is a local copy of the list of flags register for features service, used to compute properties on the full list
-    let model = (this.features.flags || []).map((key) => {
+    let model = (this.features.get('flags') || []).map((key) => {
       let meta =
         ((this.featureControls && this.featureControls.metadata) || []).find((obj) => {
           return this._normalizeFlag(obj.key) === key
