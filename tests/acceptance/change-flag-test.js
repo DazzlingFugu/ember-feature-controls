@@ -95,13 +95,13 @@ module('Acceptance | change flag', function (hooks) {
   })
 
   test('it reloads page when clicking on a reloadable feature flag', async function (assert) {
-    assert.expect(1)
-
     windowUtil.reload = function () {
-      assert.ok(true, 'Reload function is called')
+      assert.step('Reload function is called')
     }
 
     await visit('/__features')
     await click('[data-test-checkbox-flag=showBacon]')
+
+    assert.verifySteps(['Reload function is called'])
   })
 })
