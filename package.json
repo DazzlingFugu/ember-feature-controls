@@ -18,7 +18,10 @@
     "url": "https://github.com/DazzlingFugu"
   },
   "homepage": "https://github.com/DazzlingFugu/ember-feature-controls",
-  "repository": "https://github.com/DazzlingFugu/ember-feature-controls",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DazzlingFugu/ember-feature-controls.git"
+  },
   "bugs": "https://github.com/DazzlingFugu/ember-feature-controls/issues",
   "files": [
     "/addon",
