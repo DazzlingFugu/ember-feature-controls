@@ -8,9 +8,9 @@ Demo is available here: [https://dazzlingfugu.github.io/ember-feature-controls/]
 
 ## Compatibility
 
-* Ember.js v4.8 or above
-* Ember CLI v4.8 or above
-* Node.js v18 or above
+- Ember.js v4.8 or above
+- Ember CLI v4.8 or above
+- Node.js v18 or above
 
 ## Installation
 
@@ -73,30 +73,30 @@ Then, you can configure a set of metadata for your feature flags by defining the
 
 ```js
 // config/environment.js
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
     featureFlags: {
       "show-spinners": true,
-      "download-cats": false
+      "download-cats": false,
     },
     featureControls: {
       useLocalStorage: true,
       metadata: [
         {
           key: "show-spinners",
-          description: "Show spinners"
+          description: "Show spinners",
         },
         {
           key: "download-cats",
           description: "Add button to download cats image",
-          reload: true
+          reload: true,
         },
         {
           key: "easter-egg",
-          hide: true
-        }
-      ]
-    }
+          hide: true,
+        },
+      ],
+    },
   };
 
   return ENV;
