@@ -5,9 +5,20 @@ import { camelize } from '@ember/string'
 import windowUtil from 'ember-feature-controls/utils/window'
 import { getOwner } from '@ember/application'
 
+/**
+ * @typedef {Object} FeatureFlag
+ * @property {string} key
+ * @property {boolean} isEnabled
+ * @property {unknown} default
+ * @property {unknown} reload
+ */
+
 export default class FeatureControlsComponent extends Component {
   @service features
   @service featureControlsStorage
+
+  /** @type {Array<FeatureFlag>} */
+  model = []
 
   get featureFlags() {
     return this.args.featureFlags ? this.args.featureFlags : this._featureFlags
