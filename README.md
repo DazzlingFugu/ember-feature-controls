@@ -8,9 +8,9 @@ Demo is available here: [https://dazzlingfugu.github.io/ember-feature-controls/]
 
 ## Compatibility
 
-* Ember.js v3.20 or above
-* Ember CLI v3.20 or above
-* Node.js v12 or above
+* Ember.js v4.8 or above
+* Ember CLI v4.8 or above
+* Node.js v18 or above
 
 ## Installation
 
@@ -48,21 +48,19 @@ This component basically displays the table with actions buttons.
 You can configure a route for feature-controls in your app. This will add a route under the name `features-list` and the path `features` by default. You can use an object as second parameter to configure the route like any route in your app. For example:
 
 ```js
-// app/router.js
+// app/router.ts
 import EmberRouter from "@ember/routing/router";
-import config from "./config/environment";
+import config from "dummy/config/environment";
 import featureControlsRouteSetup from "ember-feature-controls/route-setup";
 
-const Router = EmberRouter.extend({
-  location: config.locationType,
-  rootURL: config.rootURL
-});
+export default class Router extends EmberRouter {
+  location = config.locationType;
+  rootURL = config.rootURL;
+}
 
-Router.map(function() {
+Router.map(function () {
   featureControlsRouteSetup(this, { path: "__features" });
 });
-
-export default Router;
 ```
 
 ## Configuration
