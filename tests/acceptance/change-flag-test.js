@@ -1,6 +1,6 @@
 import { module, test } from 'qunit'
 import { visit, click } from '@ember/test-helpers'
-import { setupApplicationTest } from 'ember-qunit'
+import { setupApplicationTest } from 'dummy/tests/helpers'
 import resetStorages from 'ember-local-storage/test-support/reset-storage'
 import windowUtil from 'ember-feature-controls/utils/window'
 

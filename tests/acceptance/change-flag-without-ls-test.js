@@ -1,6 +1,6 @@
 import { module, test } from 'qunit'
 import { visit, click } from '@ember/test-helpers'
-import { setupApplicationTest } from 'ember-qunit'
+import { setupApplicationTest } from 'dummy/tests/helpers'
 import resetStorages from 'ember-local-storage/test-support/reset-storage'
 import { initialize } from 'ember-feature-controls/instance-initializers/load-feature-controls'
 import config from 'dummy/config/environment'
