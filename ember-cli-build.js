@@ -1,13 +1,13 @@
-'use strict';
+'use strict'
 
-const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const EmberAddon = require('ember-cli/lib/broccoli/ember-addon')
 
 module.exports = function (defaults) {
   const app = new EmberAddon(defaults, {
     'ember-cli-babel': { enableTypeScriptTransform: true },
 
     // Add options here
-  });
+  })
 
   /*
     This build file specifies the options for the dummy test app of this
@@ -17,7 +17,7 @@ module.exports = function (defaults) {
   */
   app.import('node_modules/milligram/dist/milligram.css')
 
-  const { maybeEmbroider } = require('@embroider/test-setup');
+  const { maybeEmbroider } = require('@embroider/test-setup')
   return maybeEmbroider(app, {
     skipBabel: [
       {
@@ -35,7 +35,7 @@ module.exports = function (defaults) {
      *       https://github.com/mansona/ember-get-config/pull/29
      */
     compatAdapters: new Map([
-      [ 'ember-get-config', null ] // eslint-disable-line prettier/prettier
+      ['ember-get-config', null], // eslint-disable-line prettier/prettier
     ]),
-  });
-};
+  })
+}

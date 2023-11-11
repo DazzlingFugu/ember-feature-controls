@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   name: require('./package').name,
@@ -6,4 +6,4 @@ module.exports = {
   options: {
     'ember-cli-babel': { enableTypeScriptTransform: true },
   },
-};
+}
