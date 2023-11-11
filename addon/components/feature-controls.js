@@ -2,7 +2,6 @@ import Component from '@glimmer/component'
 import { get, set, action } from '@ember/object'
 import { service } from '@ember/service'
 import { camelize } from '@ember/string'
-import { assign } from '@ember/polyfills'
 import windowUtil from 'ember-feature-controls/utils/window'
 import { getOwner } from '@ember/application'
 
@@ -74,7 +73,7 @@ export default class FeatureControlsComponent extends Component {
         default: defaults[key] || false,
       }
 
-      return assign({}, meta, featureFlag)
+      return Object.assign({}, meta, featureFlag)
     })
 
     set(
