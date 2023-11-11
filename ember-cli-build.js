@@ -24,18 +24,5 @@ module.exports = function (defaults) {
         package: 'qunit',
       },
     ],
-
-    /**
-     * See:
-     * - https://github.com/embroider-build/embroider/issues/823
-     * - https://discordapp.com/channels/480462759797063690/568935504288940056/901170716949512233
-     * - https://discordapp.com/channels/480462759797063690/568935504288940056/902484167915364433
-     *
-     * TODO: to remove once the following PR is released:
-     *       https://github.com/mansona/ember-get-config/pull/29
-     */
-    compatAdapters: new Map([
-      ['ember-get-config', null], // eslint-disable-line prettier/prettier
-    ]),
   })
 }
