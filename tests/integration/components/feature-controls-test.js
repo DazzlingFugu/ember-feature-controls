@@ -1,6 +1,6 @@
 import { module, test, assert } from 'qunit'
 import { setupRenderingTest } from 'dummy/tests/helpers'
-import { click, render } from '@ember/test-helpers'
+import { click, find, render } from '@ember/test-helpers'
 import { hbs } from 'ember-cli-htmlbars'
 import { camelize } from '@ember/string'
 import resetStorages from 'ember-local-storage/test-support/reset-storage'
@@ -128,7 +128,7 @@ module('Integration | Component | feature-controls', function (hooks) {
       .isChecked('flagFalse should be checked after click')
 
     assert
-      .dom(this.element.querySelector('[data-test-label-flag="flagFalse"]'))
+      .dom(find('[data-test-label-flag="flagFalse"]'))
       .hasText('❗', "flagFalse's label should have a content")
   })
 
