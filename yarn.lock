@@ -4737,7 +4737,7 @@ ember-cli@~5.4.0:
     workerpool "^6.4.0"
     yam "^1.0.0"
 
-ember-compatibility-helpers@^1.1.2:
+ember-compatibility-helpers@^1.1.2, ember-compatibility-helpers@^1.2.1:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/ember-compatibility-helpers/-/ember-compatibility-helpers-1.2.7.tgz#b4f138bba844f8f38f0b8f4d7e928841cd5e6591"
   integrity sha512-BtkjulweiXo9c3yVWrtexw2dTmBrvavD/xixNC6TKOBdrixUwU+6nuOO9dufDWsMxoid7MvtmDpzc9+mE8PdaA==
@@ -4754,6 +4754,15 @@ ember-copy@^2.0.1:
   integrity sha512-N/XFvZszrzyyX4IcNoeK4mJvIItNuONumhPLqi64T8NDjJkxBj4Pq61rvMkJx/9eZ8alzE4I8vYKOLxT0FvRuQ==
   dependencies:
     ember-cli-babel "^7.22.1"
+
+ember-destroyable-polyfill@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/ember-destroyable-polyfill/-/ember-destroyable-polyfill-2.0.3.tgz#1673ed66609a82268ef270a7d917ebd3647f11e1"
+  integrity sha512-TovtNqCumzyAiW0/OisSkkVK93xnVF4NRU6+FN0ubpfwEOpRrmM2RqDwXI6YAChCgSHON1cz0DfQStpA1Gjuuw==
+  dependencies:
+    ember-cli-babel "^7.22.1"
+    ember-cli-version-checker "^5.1.1"
+    ember-compatibility-helpers "^1.2.1"
 
 ember-eslint-parser@^0.2.5:
   version "0.2.6"
@@ -4792,9 +4801,9 @@ ember-load-initializers@^2.1.2:
     ember-cli-typescript "^2.0.2"
 
 ember-local-storage@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/ember-local-storage/-/ember-local-storage-2.0.6.tgz#5d0b984b28b993ba8648ccbf32bffd1c74d4ddb3"
-  integrity sha512-SrC147cA726m1ho00PVtYqEz7xib4+0JJQbN6A2E3Dvrv2JnmwBK7Oexslu3GkHLvTGwry2bzQ0ySFSz2RObBw==
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/ember-local-storage/-/ember-local-storage-2.0.7.tgz#2816d2e43d305211b13722a6a6e1fe9037367331"
+  integrity sha512-EPvxH/27mIzrX/EEgng+FG6HD0ri/God9OH/9mhmgPSXrgMNq/614Z3NMnooM4QKIEBAvr0p+p1UL2DgrTTMNg==
   dependencies:
     blob-polyfill "^7.0.20220408"
     broccoli-funnel "^3.0.8"
@@ -4804,6 +4813,7 @@ ember-local-storage@^2.0.6:
     ember-cli-string-utils "^1.1.0"
     ember-cli-version-checker "^5.1.2"
     ember-copy "^2.0.1"
+    ember-destroyable-polyfill "^2.0.3"
 
 ember-page-title@^8.0.0:
   version "8.2.0"
