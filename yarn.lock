@@ -1892,9 +1892,9 @@
     "@types/ember__template" "*"
 
 "@types/ember__template@*", "@types/ember__template@^4.0.4":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@types/ember__template/-/ember__template-4.0.4.tgz#ce480a49e184d071c9b22bc2e6c8ecc3444a5d0c"
-  integrity sha512-RJHlTKWjIMZVwqyvhdgkwbGvTq6OlmzVMO+E9ONRLb+qTlX9KE9zqzZPRJgw8znttV+xWjUmEb7Giz21O1uVOg==
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@types/ember__template/-/ember__template-4.0.6.tgz#fe28324ba95fe80ec4eb97bc33ca09a1febed7ab"
+  integrity sha512-s7yTfDFtdKzxwWi3zzDIlhbMETSB+eGGmvpxhl8cnw2JX8Xj5T66NRACm4q2jJ1kJfIXhECdduw5JnIyny00vw==
 
 "@types/ember__test@*", "@types/ember__test@^4.0.4":
   version "4.0.5"
