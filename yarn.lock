@@ -1532,9 +1532,9 @@
   integrity sha512-ZA0Ht7vwd1FosVLtMFrB2Er62P1v6yX/UuS6z9UVR6DMPfrL5qx6vef+EGJPLBrBKZMlm7zMB6Fyca201y4hDA==
 
 "@glint/template@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@glint/template/-/template-1.2.1.tgz#b17b2e490ad1826d45e7bec3b87149ca926600e3"
-  integrity sha512-rlYy/93fAhYjXmTchWcwCpPFMfrqBYEskzbDYawS2oz4DVwtf4fOITLKB0QddQMI7WUCjgXAiIGZqcNa/R4YeQ==
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@glint/template/-/template-1.4.0.tgz#1c9a2f5b84f2944abe52f4e209e3c00b5c6bd710"
+  integrity sha512-yD271NhLei/HSQ6utm6hKgoU+B5D5DY+B1irPvgI4KsDEcZI7v/INf5HAMJfzCg92bP1sIxSOuXu5DU6VsY7Mw==
 
 "@handlebars/parser@~2.0.0":
   version "2.0.0"
