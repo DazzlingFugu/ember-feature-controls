@@ -138,7 +138,7 @@
     "milligram": "^1.4.1",
     "prettier": "^3.0.3",
     "qunit": "^2.20.0",
-    "qunit-dom": "^2.0.0",
+    "qunit-dom": "^3.1.2",
     "rimraf": "^5.0.1",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
