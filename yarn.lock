@@ -1890,9 +1890,9 @@
     defer-to-connect "^1.0.1"
 
 "@tsconfig/ember@^3.0.2":
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/@tsconfig/ember/-/ember-3.0.6.tgz#9a2c49e2801e544203ef572dce02ce84085e5cc1"
-  integrity sha512-b1LmFAL5suTpQsaoG5NYpKAU8XfqQcob9gPu4xQlS/sNGD8Pp+vx+jI30Cy01+mxTBsQPig2kOwFpTD2b2qwtw==
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/@tsconfig/ember/-/ember-3.0.9.tgz#6553a404385106844f1e6dd83dcbab7f613f2ded"
+  integrity sha512-0B44GyEafxJLAZSixH9VBnm9kDFCpaLXu86httaJSDEm1nfl3WWI/XfY4diPsOyOg+pc9N1/YfqH7uKM2dF0lA==
 
 "@types/body-parser@*":
   version "1.19.4"
